@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'end_users/:id/reregistration', to: 'end_users#reregistration', as: 'reregistration'
      # 退会確認画面
-    get  '/end_users/:id/check' => 'end_users#check'
+    get  '/end_users/:id/check' => 'end_users#check', as: 'check'
      # 論理削除用のルーティング
-    patch '/end_users/:id/withdrawal' => 'end_users#withdraw', as: 'withdraw'
+    patch '/end_users/:id/withdraw' => 'end_users#withdraw', as: 'withdraw'
     
     # devise_scope :user do
       # post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'

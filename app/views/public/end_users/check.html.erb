@@ -1,2 +1,27 @@
-<h1>Public::EndUsers#check</h1>
-<p>Find me in app/views/public/end_users/check.html.erb</p>
+<div class="container">
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-4 text-center">
+            <p><strong>本当に退会しますか？</strong></p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <p>
+          退会すると、会員登録情報や<br>
+          これまでの投稿履歴が閲覧できなくなります。<br>
+          退会する場合は、「退会する」をクリックしてください。
+          </p>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-3 justify-content-between">
+          <%= link_to "退会しない", end_users_path(current_end_user), :class => "btn ms-3", style: "background-color: #3f2c3f; color: #ffffff"  %>
+          <%= link_to "退会する", withdraw_path, method: :patch, class: "btn", style: "background-color: #3f2c3f; color: #ffffff", data: { confirm: "本当に退会しますか？" } %>
+        </div>
+    </div>
+
+</div>
+
