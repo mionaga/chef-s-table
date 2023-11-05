@@ -1,3 +1,50 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ # 顧客用
+ # URL /customers/sign_in ...
+ devise_for :end_users,skip: [:passwords], controllers: {
+    registrations: "public/registrations",
+    sessions: 'public/sessions'
+  }
+
+ # 管理者用
+ # URL /admin/sign_in ...
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
+  }
+  
+  root to: 'public/homes#top'
+   get 'homes/about' => "public/homes#about", as: :about
+   
+  
+  namespace :admin do
+    get 'homes/top' => 'homes#top'
+    
+    resources :end_users, only: [:index, :show, :edit, :update]
+    resources :ingredients, only: [:index, :new, :create, :show, :edit, :update]
+    resources :categories, only: [:index, :create, :edit, :update]
+
+  end
+  
+  
+  scope module: :public do
+    get 'end_users/:id/reregistration', to: 'end_users#reregistration', as: 'reregistration'
+     # 退会確認画面
+    get  '/end_users/:id/check' => 'end_users#check'
+     # 論理削除用のルーティング
+    patch '/end_users/:id/withdrawal' => 'end_users#withdraw', as: 'withdraw'
+    
+    # devise_scope :user do
+      # post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    # end
+    
+    get 'recipes/tag/:name', to: "recipes#tag_search"
+    get 'recipes/search', to: 'recipes#search'
+    
+    resources :end_users
+    resources :ingredients, only: [:index, :show]
+    resources :recipes   
+    
+    
+  end
+  
 end
