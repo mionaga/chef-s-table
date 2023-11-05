@@ -1,0 +1,110 @@
+      <header class="sticky-top" style="background-color: #9ba5a0; color: #eaedf7;">
+       
+          <div class = "container-fluid ">
+              <div class="row mx-auto">
+                    <div class="col-3 my-4">
+                      <%= link_to root_path, style: "color: white;" do %>
+                        <i class="fa-solid fa-utensils"></i>chef's table
+                      <% end %>
+                    </div>
+                
+                    
+                    <div class="col-3 my-4">
+                      <% if end_user_signed_in?%>
+                        <p><%= "ようこそ！#{current_end_user.nickname} さん" %></p>
+                      <% end %>
+                    </div>
+        
+                    <!--admin login時header-->
+                    <div class="col-6">
+                      <ul class="row justify-content-end my-2 list-unstyled">
+                        <% if admin_signed_in? %>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to admin_end_users_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-users"></i>会員一覧
+                            <% end %>
+                          </li>
+                         
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to recipes_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-folder-open"></i>レシピ一覧
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to  admin_categories_path, style: "color: white;" do %>
+                              <i class="fa-regular fa-clipboard"></i>カテゴリー一覧
+                            <% end %>
+                          </li>
+                           <li class="nav-item mx-2 my-4">
+                            <%= link_to  admin_ingredients_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-book-open"></i>食材図鑑
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to  destroy_admin_session_path, style: "color: white;", method: :delete do %>
+                              <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト
+                            <% end %>
+                          </li>
+                          
+                         <% elsif end_user_signed_in? %>   
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to end_user_path(current_end_user), style: "color: white;" do %>
+                              <i class="fa-solid fa-mug-hot"></i>マイページ
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to recipes_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-bowl-food"></i>レシピ一覧
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to admin_end_users_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-address-book"></i>会員一覧
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to ingredients_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-book-open"></i>食材図鑑
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to destroy_end_user_session_path, style: "color: white;", method: :delete do %>
+                              <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト
+                            <% end %>
+                          </li>
+                         
+                        <% else %>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to about_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-carrot"></i>アバウト
+                            <% end %>
+                          </li>
+                         <li class="nav-item mx-2 my-4">
+                            <%= link_to recipes_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-burger"></i>レシピ一覧
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to new_end_user_registration_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-user-plus"></i>新規登録
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to new_end_user_session_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-arrow-right-to-bracket"></i>ログイン
+                            <% end %>
+                          </li>
+                        <% end %>  
+                      </ul>
+              </div>
+          </div>  
+      </header>     
+              
+              
+            　  
+            
+              
+            
+          
+       
+    
