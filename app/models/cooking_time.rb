@@ -1,0 +1,2 @@
+class CookingTime < ApplicationRecord
+end
