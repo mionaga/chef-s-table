@@ -2,6 +2,13 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :ensure_nomal_end_user, only: %i[update destroy]
+  
+  def ensure_nomal_end_user
+    if resource.email = 'guest@example.com'
+      redirect_to root_path, alert: "ゲストユーザーの削除・更新はできません"
+    end  
+  end  
  
   def after_sign_in_path_for(resource)
      end_user_path(current_end_user)

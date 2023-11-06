@@ -2,9 +2,14 @@ Rails.application.routes.draw do
  # 顧客用
  # URL /customers/sign_in ...
  devise_for :end_users,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
+    registrations: "public/end_users/registrations",
     sessions: 'public/sessions'
   }
+  
+ # ゲストログイン用
+ devise_scope :end_user do
+  post 'end_users/guest_sign_in', to: 'end_users/sessions#guest_sign_in'
+ end
 
  # 管理者用
  # URL /admin/sign_in ...
