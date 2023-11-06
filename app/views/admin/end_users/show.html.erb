@@ -1,2 +1,82 @@
-<h1>Admin::EndUsers#show</h1>
-<p>Find me in app/views/admin/end_users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+        <div class="col-5">
+          <h4><%= "#{@end_user.family_name} #{@end_user.first_name}(#{@end_user.nickname})" %>さんのページ</h4>
+        </div>
+        <div class="col-2">
+            <%= link_to "編集画面へ", edit_admin_end_user_path(@end_user), class: "btn", style: "margin-top: 6px; background-color: #3e687d; color: #ffffff" %>
+        </div>
+      </div>
+  <div class="row">
+    <div class="col-md-6 text-center">
+      
+
+      <div class="row">
+         
+      </div>  
+
+      
+
+      <div class="row">
+        <table class="table table-hover table-inverse" style="margin-top: 10px;" >
+          <tr>
+            <th>
+              <div class="col">
+                <%= image_tag @end_user.get_profile_image(200, 200) %>
+              </div>
+            </th>
+            <th>会員ID:<%= @end_user.id %></th>
+          </tr>
+          <tr>
+            <th>氏名</th>
+            <td><%= @end_user.family_name %>&ensp;<%= @end_user.first_name %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @end_user.email %></td>
+          </tr>
+          <tr>
+            <th>ステータス</th>
+            <td>
+              <% if @end_user.is_deleted == true %>
+               <strong style="color:darkgray;">退会</strong>
+              <% else %>
+                <strong style="color:green;">有効</strong>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <th>専門料理</th>
+            <td><%= @end_user.specialty %></td>
+          </tr>
+          <tr>
+            <th>経歴</th>
+            <td><%= @end_user.career_intro %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @end_user.bio %></td>
+          </tr>
+
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 text-center">
+      <% @recipes.each do |recipe| %>
+      <div>
+        <%= link_to recipe_path(recipe.id) do %>
+          <%= image_tag recipe.get_image %>
+        <% end %>
+        <p>タイトル：<%= recipe.title %></p>
+        <p>説明：<%= recipe.description %></p>
+        <p>所要時間：<%= recipe.cooking_time_id %></p>
+        <p>シェフ：<%= recipe.end_user.nickname %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+

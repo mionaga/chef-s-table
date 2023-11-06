@@ -1,2 +1,104 @@
-<h1>Admin::EndUsers#edit</h1>
-<p>Find me in app/views/admin/end_users/edit.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <h2><%= "#{@end_user.family_name}#{@end_user.first_name}(#{@end_user.nickname})" %>さんのプロフィール編集</h2>
+  </div>
+  <div class="row justify-content-center">
+
+    <%= form_with model: @end_user, url: admin_end_user_path(@end_user), method: :patch do |f| %>
+
+    <table class="mx-4 table-sm">
+      <tr class="field">
+        <th>
+          <label for="inputImage">イメージ画像</label>
+        </th>
+        <th>
+          <%= image_tag @end_user.get_profile_image(150, 150) %>
+          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
+        </th>
+      </tr>
+
+      <tr class="field">
+        <th>会員ID:</th>
+        <td style="padding-left: 20px;"><%= @end_user.id %></td>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputFamilyName">名前（姓）</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_field :family_name, autofocus: true, id:"inputName" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputFirstName">名前（名）</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_field :first_name, autofocus: true, id:"inputName" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputNickName">ニックネーム</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_field :nickname, autofocus: true, id:"inputName" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputEmail">メールアドレス</label>
+        </th>
+        <th>
+        　<%= f.email_field :email, autofocus: true, id:"inputEmail" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputSpecialty">専門料理</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_field :specialty, autofocus: true, id:"inputName" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="career_intro">経歴</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_area :career_intro, autofocus: true, id:"inputText", size: "50*20" %>
+        </th>
+      </tr>
+      <tr class="field">
+        <th>
+          <label for="inputName">自己紹介</label>
+        </th>
+        <th style="padding-left: 20px;">
+          <%= f.text_area :bio, autofocus: true, id:"inputText", size: "50*20" %>
+        </th>
+      </tr>
+      <tr>
+        <th><%= f.label :is_deleted,"会員ステータス" %></th>
+        <td style="padding-left: 30px;">
+          <%= f.radio_button :is_deleted, :false %>
+          <%= f.label :is_deleted, "有効",class:"form-check-label" %>
+
+
+          <%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted, "退会",class:"form-check-label" %>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr class="field">
+        <th></th>
+        <th> <%= f.submit "変更を保存" %></th>
+      </tr>
+    </table>
+
+    <% end %>
+
+  </div>
+</div>
+
+
