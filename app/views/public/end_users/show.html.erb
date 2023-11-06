@@ -1,2 +1,63 @@
-<h1>Public::EndUsers#show</h1>
-<p>Find me in app/views/public/end_users/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 text-center">
+
+      <div class="row">
+         <div class="col">
+          <%= image_tag @end_user.get_profile_image(100, 100) %>
+        </div>
+
+
+        <div class="col">
+          <h4><%= @end_user.nickname %>さんのページ</h4>
+          <% if @end_user == current_end_user %>
+            <%= link_to "プロフィール編集", edit_end_user_path(@end_user), class: "btn", style: "margin-top: 6px; background-color: #b9d0b1; color: #ffffff" %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <table class="table table-hover table-inverse" style="margin-top: 10px;" >
+          <tr>
+            <th></th>
+            <th>登録情報</th>
+          </tr>
+          <% if @end_user == current_end_user %>
+            <tr>
+              <th>氏名</th>
+              <td><%= @end_user.family_name %>&ensp;<%= @end_user.first_name %></td>
+            </tr>
+          <% end %>  
+          <tr>
+            <th>専門料理</th>
+            <td><%= @end_user.specialty %></td>
+          </tr>
+          <tr>
+            <th>経歴</th>
+            <td><%= @end_user.career_intro %></td>
+          </tr>
+          <tr>
+            <th>自己紹介</th>
+            <td><%= @end_user.bio %></td>
+          </tr>
+
+        </table>
+      </div>
+
+    </div>
+
+    <div class="col-md-6 text-center">
+      <% @recipes.each do |recipe| %>
+      <div>
+        <%= link_to recipe_path(recipe.id) do %>
+          <%= image_tag recipe.get_image %>
+        <% end %>
+        <p>タイトル：<%= recipe.title %></p>
+        <p>説明：<%= recipe.description %></p>
+        <p>所要時間：<%= recipe.cooking_time_id %></p>
+        <p>シェフ：<%= recipe.end_user.nickname %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
     <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center shadow-lg rounded px-0 my-5">
       <h5 class="text-dark bg-light py-4 mb-0">ログイン</h5>
       <div class="form-body p-4">
-
+        
         <%= form_with model: @end_user, url: end_user_session_path do |f| %>
          <div class="field">
            <%= f.label :メールアドレス %><br />
@@ -26,13 +26,10 @@
            <%= f.submit "ログイン" %>
          </div>
          <% end %>
-         <div class="actions">
-           <%= link_to 'ゲストログイン（閲覧用）', end_users_guest_sign_in_path, method: :post, class: "btn", style: "margin-top: 6px; background-color: #b9d0b1; color: #ffffff" %>
-         </div>
 　　　</div>
     </div>
   </div>
   <div class="row justify-content-center">
     <%= render "public/shared/links" %>
-  </div>
-</div>
+  </div>  
+</div>  

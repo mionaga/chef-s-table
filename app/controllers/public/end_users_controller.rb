@@ -5,12 +5,21 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(params[:id])
     hide_sensitive_information unless current_end_user == @end_user
+    @recipes = @end_user.recipes
   end
 
   def edit
+    @end_user = EndUser.find(params[:id])
   end
+  
+  def update
+    end_user = EndUser.find(params[:id])
+    end_user.update(end_user_params)
+    redirect_to end_user_path(end_user)
+  end  
 
   def index
+    @end_users = EndUser.all
 
   end
 
@@ -30,11 +39,18 @@ class Public::EndUsersController < ApplicationController
   private
 
   def end_user_params
-    params.require(:end_user).permit(:family_name, :first_name, :nickname, :email, :specialty, :career_intro, :bio)
+    params.require(:end_user).permit(:family_name,
+                                     :first_name, 
+                                     :nickname, 
+                                     :email, 
+                                     :specialty, 
+                                     :career_intro, 
+                                     :bio, 
+                                     :profile_image
+                                     )
   end
 
   def hide_sensitive_information
-    @end_user.email = nil
     @end_user.family_name = nil
     @end_user.first_name = nil
   end
