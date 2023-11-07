@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     
     resources :end_users, only: [:index, :show, :edit, :update]
     resources :ingredients, only: [:index, :new, :create, :show, :edit, :update]
-    resources :categories, only: [:index, :create, :edit, :update]
+    resources :categories, only: [:index, :create, :edit, :update, :destroy]
 
   end
   
