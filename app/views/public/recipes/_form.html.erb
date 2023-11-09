@@ -1,10 +1,5 @@
-<div class="container mt-6">
-
-  <%= form_with model: @recipe, url: recipes_path, method: :post, remote: true do |f| %>
-  
-     
-  <section class="description">
-    <div class="description__inner">
+<section class="description">
+    
       <div class="description__img-field">
         <div class="cooking-title">
           <h4>料理完成写真</h4>
@@ -20,7 +15,7 @@
               </div>
             <% end %>
       </div>
-    </div>  
+    
     <div class="new-form">
         <div class="form-group">
           <%= f.label :"[タイトル]" %>
@@ -31,15 +26,9 @@
           <%= f.label :"[料理説明]" %>
           <%= f.text_field :description, placeholder: "レシピの紹介文を記載してください（必須）",class: "form-control", rows: "4" %>
         </div>
-        
-        <div class="form-group">
-          <%= f.label :"[所要時間]" %>
-          <%= f.collection_select :cooking_time_id, CookingTime.all, :id, :time_in_minuites, include_blank: "選択して下さい" %>
-        </div>
-        
     </div>
   
-  </section>
+</section>
     
 
     <!--材料・分量フォームの隠し要素テンプレート：display: noneで表示はされない-->
@@ -79,10 +68,8 @@
     </div>
 
     <%= f.submit "送信する", class: "btn btn-primary" %>
-
-  
-
-
+    
+    
     <script>
       // DOMContentLoaded文書のロード、DOMが完全に読み込まれた後に以下のコードが実行される
       document.addEventListener("DOMContentLoaded", function() {
@@ -109,8 +96,3 @@
     });
 
     </script>
-
-   <% end %>
-
-</div>
-

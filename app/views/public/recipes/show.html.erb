@@ -1,2 +1,40 @@
-<h1>Public::Recipes#show</h1>
-<p>Find me in app/views/public/recipes/show.html.erb</p>
+<div class="conteiner">
+  <div class="row">
+    <h5><%= @recipe.title %></h5>
+  </div>
+  <div class="row">
+    <h6><%= @recipe.description %></h6>
+  </div>
+  <div class="row">
+    <div class="col-8 offset-1">
+      <%= image_tag @recipe.get_photo(200,200) %>
+    </div>
+    
+    <div class="col-3">
+      <div class="row"><%= image_tag @recipe.end_user.get_profile_image(50,50) %></div>
+      <div class="row">
+        <p>投稿者：<%= @recipe.end_user.name %></p>
+      </div>
+      <div class="row">
+        <p>専門料理：<%= @recipe.end_user.specialty %></p>
+      </div>
+      <div class="row">
+        <p>自己紹介：<%= @recipe.end_user.bio %></p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-4 offset-1">
+      <%= @recipe.recipe_ingredients %>
+    </div>
+    <div class="col-7">
+      <%= @recipe.step %>
+    </div>
+  </div>
+  <div class="row">
+    <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
+      <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn recipe-edit-btn" %>
+    <% end %>
+  </div>
+</div>

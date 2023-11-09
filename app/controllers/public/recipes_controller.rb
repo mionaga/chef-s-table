@@ -1,5 +1,6 @@
 class Public::RecipesController < ApplicationController
   def index
+    @recipes = Recipe.all
   end
 
   def new
@@ -21,17 +22,23 @@ class Public::RecipesController < ApplicationController
 
 
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+
   end
 
   private
 
   def recipe_params
     params.require(:recipe).permit(
-      :title, :description, :photo,
-      recipe_ingredients_attributes: [:id, :name, :quantity, :_destroy],
+      :title, :description, :photo, :cooking_time_id,  :profile_image,
+      recipe_ingredients_attributes: [:id, :name, :quantity, :_destroy, :category_id],
       steps_attributes: [:id,:ingredients, :description, :_destroy]
       )
   end

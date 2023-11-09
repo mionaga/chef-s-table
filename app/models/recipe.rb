@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   belongs_to :end_user
-  belongs_to :category
+
   belongs_to :cooking_time
   
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
@@ -13,4 +13,13 @@ class Recipe < ApplicationRecord
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
   
   has_one_attached :photo
+  
+  def get_photo
+    unless photo.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      photo.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+    end
+    photo.variant(resize_to_fill: [width, height], gravity: :center).processed
+  end
+  
 end
