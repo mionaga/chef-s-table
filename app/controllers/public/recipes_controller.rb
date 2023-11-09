@@ -10,6 +10,7 @@ class Public::RecipesController < ApplicationController
 
  def create
    @recipe = Recipe.new(recipe_params)
+   @recipe.end_user_id = current_end_user.id
    if @recipe.save
      redirect_to recipe_path(@recipe), notice: '投稿しました'
    else
@@ -31,7 +32,7 @@ class Public::RecipesController < ApplicationController
     params.require(:recipe).permit(
       :title, :description, :photo,
       recipe_ingredients_attributes: [:id, :name, :quantity, :_destroy],
-      steps_attributes: [:id,:ingredients, :_destroy]
+      steps_attributes: [:id,:ingredients, :description, :_destroy]
       )
   end
 end

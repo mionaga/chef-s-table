@@ -1,4 +1,6 @@
-<div class="recipe_ingredient_fields row align_items_center">
+
+
+<div class="recipe_ingredient-fields row align_items_center">
   <!--編集の際dbから削除できるように-->
   <%= f.hidden_field :_destroy %>
   <div class="col">
@@ -12,8 +14,8 @@
     </div>
   </div>
   <div class="col-auto">
-    <button type="button" class="btn btn-danger remove-recipe-ingredient mb-3">
-      <i class="fa-solid fa-stash"></i>
+    <button type="button" class="btn btn-danger remove-recipe_ingredient">
+      <i class="fas fa-trash-alt"></i>
     </button>
   </div>
 </div>
@@ -31,3 +33,4 @@
     });
   });
 </script>
+

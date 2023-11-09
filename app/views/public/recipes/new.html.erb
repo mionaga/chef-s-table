@@ -1,9 +1,32 @@
-<div class="container">
-  
-  
-  
+<div class="container mt-6">
 
-  <%= form_for @recipe, url: {action:'new'}, method: :post, remote: true do |f| %>
+
+
+
+  <%= form_with model: @recipe, url: recipes_path, method: :post, remote: true do |f| %>
+  
+     
+  <section class="description">
+    <div class="description__inner">
+      <div class="description__img-field">
+        <div class="cooking-title">
+          <h4>料理完成写真</h4>
+          </div>
+          <label class="img-file">
+            <!--<!%= image_tag 'add_a_photo', class:"add-photo-btn"%>-->
+            <%= f.file_field :image, accept: "image/*" %>
+          </label>
+         
+            <% unless current_page?(controller:"recipes", action: "new") %>
+              <div class="description__remove-img-label">
+                <%= f.check_box :remove_image %>
+                <%= f.label :remove_image %>
+              </div>
+            <% end %>
+      </div>
+    </div>  
+    
+    
 
     <!--材料・分量フォームの隠し要素テンプレート：display: noneで表示はされない-->
     <div id="recipe_ingredient_fields-template" style="display: none;">
@@ -24,7 +47,7 @@
     </div>
 
     <!--作り方フォームの隠し要素テンプレート-->
-    <div id="step-fields-template" style="display: none;">
+    <div id="step_fields-template" style="display: none;">
       <!--新しいstepオブジェクトを作成-->
       <%= f.fields_for :steps, Step.new, child_index: "new_step" do |step_field| %>
         <%= render 'step', f: step_field %>
@@ -40,7 +63,7 @@
       <!--作り方フォームを追加できる-->
       <button type="button" id="add-step" class="btn" style="background-color: #234555; color: white;">作り方を追加</button>
     </div>
-    
+
     <%= f.submit "送信する", class: "btn btn-primary" %>
 
    <% end %>
@@ -48,9 +71,9 @@
 
     <script>
       // DOMContentLoaded文書のロード、DOMが完全に読み込まれた後に以下のコードが実行される
-      document.addEventListener("DOMContentLoaded", function(){
+      document.addEventListener("DOMContentLoaded", function() {
       // add-recipe_ingredient IDを持つHTML要素のボタンを取得、「材料追加」ボタンにクリックイベントを追加
-      document.getElementById("add-recipe_ingredient").addEventListener("click", function() => {
+      document.getElementById("add-recipe_ingredient").addEventListener("click", function() {
         // recipe_ingredient_fields-templateというIDを持つdiv要素の内部HTMLを取得
         var content = document.getElementById("recipe_ingredient_fields-template").innerHTML;
         var uniqueId = new Date().getTime();
@@ -62,7 +85,7 @@
     });
 
     // 作り方フォームを追加
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#add-step').addEventListener('click', () => {
         let content = document.getElementById('step_fields-template').innerHTML;
         let uniqueId = new Date().getTime();
@@ -72,8 +95,8 @@
     });
 
     </script>
-    
-    
-  
+
+
+
 </div>
 
