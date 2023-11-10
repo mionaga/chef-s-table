@@ -1,19 +1,19 @@
-<div class="conteiner">
+<div class="container">
   <div class="row">
-    <h5><%= @recipe.title %></h5>
+    <h5>レシピ名：<%= @recipe.title %></h5>
   </div>
   <div class="row">
-    <h6><%= @recipe.description %></h6>
+    <h6>レシピ紹介：<%= @recipe.description %></h6>
   </div>
   <div class="row">
     <div class="col-8 offset-1">
-      <%= image_tag @recipe.get_photo(200,200) %>
+      <%= image_tag @recipe.get_photo(300,300) %>
     </div>
     
     <div class="col-3">
       <div class="row"><%= image_tag @recipe.end_user.get_profile_image(50,50) %></div>
       <div class="row">
-        <p>投稿者：<%= @recipe.end_user.name %></p>
+        <p>投稿者：<%= @recipe.end_user.nickname %></p>
       </div>
       <div class="row">
         <p>専門料理：<%= @recipe.end_user.specialty %></p>
@@ -29,12 +29,18 @@
       <%= @recipe.recipe_ingredients %>
     </div>
     <div class="col-7">
-      <%= @recipe.step %>
+      <%= @recipe.steps %>
     </div>
   </div>
   <div class="row">
     <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-      <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn recipe-edit-btn" %>
+      <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn", style: "margin-top: 6px; background-color: #7d826a; color: #ffffff" %>
     <% end %>
   </div>
+   <div class="row">
+    <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
+      <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn", style: "margin-top: 6px; background-color: #5b6654; color: #ffffff" %>
+    <% end %>
+  </div>
+  
 </div>

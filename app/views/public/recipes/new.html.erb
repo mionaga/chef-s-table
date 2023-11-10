@@ -1,8 +1,8 @@
 <div class="container mt-6">
 
   <%= form_with model: @recipe, url: recipes_path, method: :post, remote: true do |f| %>
-  
-     
+
+
   <section class="description">
     <div class="description__inner">
       <div class="description__img-field">
@@ -11,8 +11,11 @@
           </div>
           <label class="img-file">
             <%= f.file_field :image, accept: "image/*" %>
+            <% if @recipe.photo.attached? %>
+              <%= image_tag @recipe.get_photo(200,200) %>
+            <% end %>
           </label>
-         
+
             <% unless current_page?(controller:"recipes", action: "new") %>
               <div class="description__remove-img-label">
                 <%= f.check_box :remove_image %>
@@ -20,7 +23,7 @@
               </div>
             <% end %>
       </div>
-    </div>  
+    </div>
     <div class="new-form">
         <div class="form-group">
           <%= f.label :"[タイトル]" %>
@@ -31,16 +34,16 @@
           <%= f.label :"[料理説明]" %>
           <%= f.text_field :description, placeholder: "レシピの紹介文を記載してください（必須）",class: "form-control", rows: "4" %>
         </div>
-        
+
         <div class="form-group">
           <%= f.label :"[所要時間]" %>
           <%= f.collection_select :cooking_time_id, CookingTime.all, :id, :time_in_minuites, include_blank: "選択して下さい" %>
         </div>
-        
+
     </div>
-  
+
   </section>
-    
+
 
     <!--材料・分量フォームの隠し要素テンプレート：display: noneで表示はされない-->
     <div id="recipe_ingredient_fields-template" style="display: none;">
@@ -55,6 +58,8 @@
       <%= render 'recipe_ingredient', f: recipe_ingredient_field %>
     <% end %>
     <div id="recipe_ingredients"></div>
+    
+    
     <div>
       <!--材料、分量フォームを追加できる-->
       <button type="button" id="add-recipe_ingredient" class="btn mb-4" style="background-color: #234555; color: white;">材料を追加</button>
@@ -80,7 +85,8 @@
 
     <%= f.submit "送信する", class: "btn btn-primary" %>
 
-  
+   
+
 
 
     <script>
@@ -109,8 +115,8 @@
     });
 
     </script>
-
-   <% end %>
-
+    
+    <% end %>
+  
 </div>
 

@@ -1,1 +1,18 @@
 @use '~bootstrap/scss/bootstrap';
+
+// ページネーションのスタイル
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+// アクティブなページ番号のスタイル
+.pagination>.active>a {
+  background: #93c9ff;
+  border-radius: 15px;
+}
+
+// ホバー時のスタイル
+.pagination>li>a:hover {
+  border-radius: 15px;
+}

@@ -19,7 +19,7 @@ class Public::EndUsersController < ApplicationController
   end  
 
   def index
-    @end_users = EndUser.all
+    @end_users = EndUser.all.page(params[:page]).per(8)
 
   end
 

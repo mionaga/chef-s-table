@@ -14,12 +14,13 @@ class Recipe < ApplicationRecord
   
   has_one_attached :photo
   
-  def get_photo
+  def get_photo(width, height)
     unless photo.attached?
-      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      file_path = Rails.root.join('app/assets/images/no_image.png')
       photo.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     photo.variant(resize_to_fill: [width, height], gravity: :center).processed
   end
+
   
 end

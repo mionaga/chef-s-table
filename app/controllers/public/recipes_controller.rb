@@ -1,6 +1,6 @@
 class Public::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all
+    @recipes = Recipe.all.page(params[:page]).per(8)
   end
 
   def new
@@ -30,7 +30,9 @@ class Public::RecipesController < ApplicationController
   end
 
   def update
-
+    @recipe = Recipe.find(params[:id])
+    @recipe.update
+    redirect_to @recipe
   end
 
   private

@@ -27,7 +27,11 @@
               <th>氏名</th>
               <td><%= @end_user.family_name %>&ensp;<%= @end_user.first_name %></td>
             </tr>
-          <% end %>  
+          <% end %>
+           <tr>
+            <th>ニックネーム</th>
+            <td><%= @end_user.nickname %></td>
+          </tr>
           <tr>
             <th>専門料理</th>
             <td><%= @end_user.specialty %></td>
@@ -50,12 +54,15 @@
       <% @recipes.each do |recipe| %>
       <div>
         <%= link_to recipe_path(recipe.id) do %>
-          <%= image_tag recipe.get_image %>
+          <%= image_tag recipe.get_photo(100,100) %>
         <% end %>
-        <p>タイトル：<%= recipe.title %></p>
+        <p>タイトル：
+          <%= link_to recipe_path(recipe.id) do %>
+            <%= recipe.title %>
+          <% end %>
+        </p>
         <p>説明：<%= recipe.description %></p>
-        <p>所要時間：<%= recipe.cooking_time_id %></p>
-        <p>シェフ：<%= recipe.end_user.nickname %></p>
+        <p>所要時間：<%= recipe.cooking_time.time_in_minuites %></p>
       </div>
       <% end %>
     </div>

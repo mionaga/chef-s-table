@@ -1,15 +1,48 @@
-<div class="container">
 
-  <% @recipes.each do |recipe| %>
+<div class="album bg-light">
+  <div class="container">
 
-  <div class="row">
-    <%= image_tag recipe.get_photo %>
-    <p>投稿ユーザー画像：<%= image_tag recipe.end_user.get_profile_image(100,100) %></p>
-    <p>タイトル：<%= recipe.title %></p>
-    <p>説明：<%= recipe.description %></p>
-    <P>投稿者：<%= recipe.end_user.name %>さん</P>
+    <div class="row">
+
+      <div class ="col">
+        <h2>レシピ一覧</h2>
+    
+        <div class="row">
+
+             <% @recipes.each do |recipe| %>
+                <div class="col-md-3">
+                   <div class="card custom-card mb-4 shadow-lg">
+                     <%= link_to recipe_path(recipe) do %>
+                       <%= image_tag recipe.get_photo(200, 200),class:"card-img-top"; %>
+                     <% end %>
+                   <div class="card-body">
+
+                     <p class="card-title">
+                       <%= link_to recipe_path(recipe) do %>
+                         <%= recipe.title %>
+                       <% end %>
+                     </p>
+                      <p class="card-description">
+                        <%= recipe.description %>
+                      </p>
+                      <P class="card-end_user">
+                        投稿者：
+                          <%= link_to end_user_path(recipe.end_user) do %>
+                            <%= recipe.end_user.nickname %>さん
+                          <% end %> 
+                          <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
+                      </P>
+                   </div>
+                  </div>
+                </div>
+              <% end %>
+
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center"> 
+      <%= paginate @recipes %>
+    </div>
+  
   </div>
-
-  <% end %>
-
 </div>
