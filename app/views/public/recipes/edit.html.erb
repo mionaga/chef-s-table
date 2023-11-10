@@ -5,8 +5,9 @@
   </div>
 
   <%= form_with model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true do |f| %>
+    <%= f.hidden_field :authenticity_token %>
 
-    <%= render 'form' %>
+    <%= render 'form', recipe: @recipe %>
 
   <% end %>
 </div>

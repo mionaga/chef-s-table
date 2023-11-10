@@ -1,4 +1,6 @@
 class Public::RecipesController < ApplicationController
+  protect_from_forgery
+  
   def index
     @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps).page(params[:page]).per(8)
   end
