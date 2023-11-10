@@ -22,7 +22,9 @@ class Public::RecipesController < ApplicationController
 
 
   def show
-    @recipe = Recipe.find(params[:id])
+      # 例（これには実際のモデルと関連付けに合わせてください）
+    @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
+
   end
 
   def edit

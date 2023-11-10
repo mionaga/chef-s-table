@@ -1,46 +1,102 @@
 <div class="container">
-  <div class="row">
-    <h5>レシピ名：<%= @recipe.title %></h5>
-  </div>
-  <div class="row">
-    <h6>レシピ紹介：<%= @recipe.description %></h6>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-1">
-      <%= image_tag @recipe.get_photo(300,300) %>
+
+  <div class="row" style="margin-bottom: 10px;">
+    <div class="col-7 offset-1">
+      <div class="row">
+        <h4>レシピ名：<%= @recipe.title %></h4>
+      </div>
+      <div class="row">
+        <%= image_tag @recipe.get_photo(400,300) %>
+      </div>
+         <div class="row">
+           <h6>レシピ紹介：<%= @recipe.description %></h6>
+         </div>
+          <div class="row">
+           <h6>所要時間：<%= @recipe.cooking_time.time_in_minuites %></h6>
+         </div>
+      </div>
+
+    <div class="col-4" style="margin-bottom: 10px;">
+      <table class="table table-sm">
+        <tr>
+          <th>[投稿者紹介]</th>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to end_user_path(@recipe.end_user) do %>
+              <%= image_tag @recipe.end_user.get_profile_image(50,50) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+           <td>
+            投稿者：<%= link_to end_user_path(@recipe.end_user) do %>
+              <%= @recipe.end_user.nickname %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>専門料理：<%= @recipe.end_user.specialty %></td>
+        </tr>
+        <tr>
+          <td>自己紹介：<%= @recipe.end_user.bio %></td>
+        </tr>
+      </table>
     </div>
-    
-    <div class="col-3">
-      <div class="row"><%= image_tag @recipe.end_user.get_profile_image(50,50) %></div>
-      <div class="row">
-        <p>投稿者：<%= @recipe.end_user.nickname %></p>
-      </div>
-      <div class="row">
-        <p>専門料理：<%= @recipe.end_user.specialty %></p>
-      </div>
-      <div class="row">
-        <p>自己紹介：<%= @recipe.end_user.bio %></p>
-      </div>
-    </div>
   </div>
-  
+
   <div class="row">
     <div class="col-4 offset-1">
-      <%= @recipe.recipe_ingredients %>
+      <div class="row">
+        <table class="table table-bordered">
+          <thead>
+            <tr bgcolor="#94bcb7">
+              <th>材料</th>
+              <th>使用量</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
+
+            <td><%= recipe_ingredient.name %></td>
+            <td> <%= recipe_ingredient.quantity %></td>
+
+            <% end %>
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="row">
+        <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
+          <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn", style: "margin-top: 6px; background-color: #8aa7a1; color: #ffffff" %>
+        <% end %>
+     </div>
+     <div class="row">
+       <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
+         <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn", style: "margin-top: 6px; background-color: #788897; color: #ffffff" %>
+       <% end %>
+     </div>
+
     </div>
     <div class="col-7">
-      <%= @recipe.steps %>
+
+      <table class="table table-hober table-inverse">
+          <thead>
+            <tr bgcolor="#94bcb7">
+              <th>作り方</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <% @recipe.steps.each do |step| %>
+              <td><%= step.description %></td>
+            <% end %>
+
+          </tbody>
+        </table>
+
     </div>
   </div>
-  <div class="row">
-    <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-      <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn", style: "margin-top: 6px; background-color: #7d826a; color: #ffffff" %>
-    <% end %>
-  </div>
-   <div class="row">
-    <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-      <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn", style: "margin-top: 6px; background-color: #5b6654; color: #ffffff" %>
-    <% end %>
-  </div>
-  
 </div>
