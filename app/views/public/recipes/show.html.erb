@@ -59,8 +59,10 @@
 
             <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
 
-            <td><%= recipe_ingredient.name %></td>
-            <td> <%= recipe_ingredient.quantity %></td>
+            <tr>
+              <td><%= recipe_ingredient.name %></td>
+              <td> <%= recipe_ingredient.quantity %></td>
+            </tr>
 
             <% end %>
 
@@ -91,7 +93,11 @@
           <tbody>
 
             <% @recipe.steps.each do |step| %>
-              <td><%= step.description %></td>
+            
+              <tr>
+                <td><%= step.description %></td>
+              </tr>
+              
             <% end %>
 
           </tbody>

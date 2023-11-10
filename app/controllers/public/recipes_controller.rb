@@ -1,6 +1,6 @@
 class Public::RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all.page(params[:page]).per(8)
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps).page(params[:page]).per(8)
   end
 
   def new
@@ -22,9 +22,7 @@ class Public::RecipesController < ApplicationController
 
 
   def show
-      # 例（これには実際のモデルと関連付けに合わせてください）
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
-
   end
 
   def edit
@@ -33,7 +31,7 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update
+    @recipe.update(recipe_params)
     redirect_to @recipe
   end
 
