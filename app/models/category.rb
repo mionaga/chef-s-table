@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :recipes
-  
+  has_many :recipe_ingredients, dependent: :destroy
+
   validates :name, presence: true, uniqueness: true
 end

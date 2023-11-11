@@ -1,2 +1,14 @@
-<h1>Public::Recipes#edit</h1>
-<p>Find me in app/views/public/recipes/edit.html.erb</p>
+<div class="container mt-6">
+
+  <div class="row justify-content-center">
+    <h4>レシピ編集</h4>
+  </div>
+
+  <%= form_with model: @recipe, url: recipe_path(@recipe), method: :patch, remote: true do |f| %>
+    <%= f.hidden_field :authenticity_token %>
+
+    <%= render 'form', recipe: @recipe %>
+
+  <% end %>
+</div>
+
