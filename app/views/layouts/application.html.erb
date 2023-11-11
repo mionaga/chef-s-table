@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/1ccc9ca859.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <style>
     body {
       display: flex;
@@ -21,13 +21,16 @@
       padding: 15px; /* 適切な余白を設定 */
       text-align: center;
     }
+    .col-md-6 {
+      padding: 20px
+    }
   </style>
   </head>
 
   <body>
     <%= render 'layouts/header' %>
     <%= yield %>
-    
+
     <%= render 'layouts/footer' %>
   </body>
 </html>
