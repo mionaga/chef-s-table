@@ -72,7 +72,7 @@
 
       <div class="row">
         <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-          <%= link_to 'レシピ編集', edit_recipe_path(@recipe), class:"btn", style: "margin-top: 6px; background-color: #8aa7a1; color: #ffffff" %>
+          <%= link_to 'レシピ編集', edit_recipe_path(@recipe), data: {"turbolinks" => false}, class:"btn", style: "margin-top: 6px; background-color: #8aa7a1; color: #ffffff" %>
         <% end %>
      </div>
      <div class="row">
@@ -93,11 +93,11 @@
           <tbody>
 
             <% @recipe.steps.each do |step| %>
-            
+
               <tr>
                 <td><%= step.description %></td>
               </tr>
-              
+
             <% end %>
 
           </tbody>
