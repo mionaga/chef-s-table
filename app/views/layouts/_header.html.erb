@@ -27,7 +27,7 @@
 
                           <li class="nav-item mx-2 my-4">
                             <%= link_to recipes_path, style: "color: white;" do %>
-                              <i class="fa-solid fa-folder-open"></i>レシピ一覧
+                              <i class="fa-solid fa-bowl-food"></i>レシピ一覧
                             <% end %>
                           </li>
                           <li class="nav-item mx-2 my-4">
@@ -35,6 +35,10 @@
                               <i class="fa-regular fa-clipboard"></i>カテゴリー一覧
                             <% end %>
                           </li>
+                           <li class="nav-item mx-2 my-4">
+                            <%= link_to  new_admin_ingredient_path, style: "color: white;" do %>
+                              <i class="fa-solid fa-folder-open"></i>食材図鑑追加フォーム
+                            <% end %>
                            <li class="nav-item mx-2 my-4">
                             <%= link_to  admin_ingredients_path, style: "color: white;" do %>
                               <i class="fa-solid fa-book-open"></i>食材図鑑
