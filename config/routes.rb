@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- # 顧客用
+    
  # URL /customers/sign_in ...
  devise_for :end_users,skip: [:passwords], controllers: {
     registrations: "public/end_users/registrations",
@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   
   
   scope module: :public do
+    # 顧客用
     get 'end_users/:id/reregistration', to: 'end_users#reregistration', as: 'reregistration'
      # 退会確認画面
     get  '/end_users/:id/check' => 'end_users#check', as: 'check'
@@ -41,14 +42,15 @@ Rails.application.routes.draw do
     # devise_scope :user do
       # post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
     # end
-    
     get 'recipes/tag/:name', to: "recipes#tag_search"
     get 'recipes/search', to: 'recipes#search'
     
     resources :end_users
     resources :ingredients, only: [:index, :show]
     resources :recipes   
-    
+    resources :categories, only: [:index] do
+     resources :ingrdients, only: :index, module: :categories
+    end 
     
   end
   

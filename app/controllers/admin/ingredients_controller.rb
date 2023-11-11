@@ -9,8 +9,12 @@ class Admin::IngredientsController < ApplicationController
   
   def create
     @ingredient = Ingredient.new(ingredient_params)
-    @ingredient.save
-    redirect_to admin_ingredients_path
+    if @ingredient.save
+      redirect_to admin_ingredient_path(@ingredient), notice: "投稿しました"
+    else
+      flash notice = "投稿に失敗しました。必須項目を入力してください"
+      render new
+    end 
   end  
 
   def show

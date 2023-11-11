@@ -9,6 +9,9 @@
     <%= form_with model: @ingredient, url: admin_ingredients_path, method: :post, local: true do |f| %>
       <h5>画像</h5>
       <%= f.file_field :image, accept: "image/*" %>
+        <% if @ingredient.image.attached? %>
+          <%= image_tag @ingredient.get_image(200,200) %>
+        <% end %>
       <h5>食材名</h5>
       <%= f.text_field :name %>
       <h5>食材カテゴリー</h5>
