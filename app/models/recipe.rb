@@ -2,7 +2,7 @@ class Recipe < ApplicationRecord
   belongs_to :end_user
 
   belongs_to :cooking_time
-  
+  has_many :categories, through: :recipe_iingredients, dependent: :destroy
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
   # reject_if: :all_blank　不要なカラレコードの生成を防ぐ
   # allow_destroy: trueは関連するこれコードを簡単に削除できるようにする
