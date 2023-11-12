@@ -1,2 +1,48 @@
-<h1>Public::Recipes#index</h1>
-<p>Find me in app/views/public/recipes/index.html.erb</p>
+
+<div class="album bg-light">
+  <div class="container">
+
+    <div class="row">
+
+      <div class ="col">
+        <h2>レシピ一覧</h2>
+    
+        <div class="row">
+
+             <% @recipes.each do |recipe| %>
+                <div class="col-md-3">
+                   <div class="card custom-card mb-4 shadow-lg">
+                     <%= link_to recipe_path(recipe) do %>
+                       <%= image_tag recipe.get_photo(200, 200),class:"card-img-top"; %>
+                     <% end %>
+                   <div class="card-body">
+
+                     <p class="card-title">
+                       <%= link_to recipe_path(recipe) do %>
+                         <%= recipe.title %>
+                       <% end %>
+                     </p>
+                      <p class="card-description">
+                        <%= recipe.description %>
+                      </p>
+                      <P class="card-end_user">
+                        投稿者：
+                          <%= link_to end_user_path(recipe.end_user) do %>
+                            <%= recipe.end_user.nickname %>さん
+                          <% end %> 
+                          <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
+                      </P>
+                   </div>
+                  </div>
+                </div>
+              <% end %>
+
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center"> 
+      <%= paginate @recipes %>
+    </div>
+  
+  </div>
+</div>

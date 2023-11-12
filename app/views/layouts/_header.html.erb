@@ -1,5 +1,5 @@
       <header class="sticky-top" style="background-color: #9ba5a0; color: #eaedf7;">
-       
+
           <div class = "container-fluid ">
               <div class="row mx-auto">
                     <div class="col-3 my-4">
@@ -7,14 +7,14 @@
                         <i class="fa-solid fa-utensils"></i>chef's table
                       <% end %>
                     </div>
-                
-                    
+
+
                     <div class="col-3 my-4">
                       <% if end_user_signed_in?%>
                         <p><%= "ようこそ！#{current_end_user.nickname} さん" %></p>
                       <% end %>
                     </div>
-        
+
                     <!--admin login時header-->
                     <div class="col-6">
                       <ul class="row justify-content-end my-2 list-unstyled">
@@ -24,7 +24,7 @@
                               <i class="fa-solid fa-users"></i>会員一覧
                             <% end %>
                           </li>
-                         
+
                           <li class="nav-item mx-2 my-4">
                             <%= link_to recipes_path, style: "color: white;" do %>
                               <i class="fa-solid fa-folder-open"></i>レシピ一覧
@@ -45,9 +45,9 @@
                               <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト
                             <% end %>
                           </li>
-                          
+
                           <!--end_userlogin時header-->
-                         <% elsif end_user_signed_in? %>   
+                         <% elsif end_user_signed_in? %>
                           <li class="nav-item mx-2 my-4">
                             <%= link_to end_user_path(current_end_user), style: "color: white;" do %>
                               <i class="fa-solid fa-mug-hot"></i>マイページ
@@ -56,6 +56,11 @@
                           <li class="nav-item mx-2 my-4">
                             <%= link_to recipes_path, style: "color: white;" do %>
                               <i class="fa-solid fa-bowl-food"></i>レシピ一覧
+                            <% end %>
+                          </li>
+                          <li class="nav-item mx-2 my-4">
+                            <%= link_to new_recipe_path, data: {"turbolinks" => false}, style: "color: white;" do %>
+                              <i class="fa-solid fa-clipboard"></i>新規投稿ページ
                             <% end %>
                           </li>
                           <li class="nav-item mx-2 my-4">
@@ -73,7 +78,7 @@
                               <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト
                             <% end %>
                           </li>
-                         
+
                         <% else %>
                           <li class="nav-item mx-2 my-4">
                             <%= link_to about_path, style: "color: white;" do %>
@@ -100,17 +105,16 @@
                               <i class="fa-solid fa-arrow-right-to-bracket"></i>ゲストログイン
                             <% end %>
                           </li>
-                        <% end %>  
+                        <% end %>
                       </ul>
               </div>
-          </div>  
-      </header>     
-              
-              
-            　  
-            
-              
-            
-          
-       
-    
+          </div>
+      </header>
+
+
+
+
+
+
+
+

@@ -5,9 +5,7 @@
 
       <div class ="col">
         <h2>会員一覧</h2>
-        <h5>（全<%= @end_users.count %>名）</h5>
-
-
+    
         <div class="row">
 
              <% @end_users.each do |end_user| %>
@@ -36,5 +34,8 @@
         </div>
       </div>
     </div>
+    <div class="row justify-content-center"> <%= paginate @end_users %>
+    </div>
+  
   </div>
 </div>

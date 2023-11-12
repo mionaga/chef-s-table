@@ -1,16 +1,11 @@
-<div class="container mt-6">
-
-  <div class="row justify-content-center">
-    <h4>新規レシピ投稿</h4>
-  </div>
-
-  <%= form_with model: @recipe, url: recipes_path, method: :post, remote: true do |f| %>
+ <%= form_with model: recipe, url: recipes_path, method: :post, remote: true do |f| %>
 
 
   <section class="description">
     <div class="description__inner">
       <div class="description__img-field">
         <div class="cooking-title">
+          
           <p>料理完成写真</p>
           </div>
           <label class="img-file">
@@ -121,6 +116,3 @@
     </script>
 
     <% end %>
-
-</div>
-

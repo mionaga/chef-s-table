@@ -23,6 +23,19 @@ Admin.create!(
   )
 end
 
+5.times do |i|
+  EndUser.create(
+    family_name: "川田#{i + 1}",
+    first_name: "太郎",
+    nickname: "plate#{i+1}",
+    email: "kawata#{i + 1}@kawata",
+    password: "password",
+    specialty: "イタリア料理",
+    career_intro: "調理師経歴５年目です",
+    bio: "特技：魚捌き"
+  )
+end
+
 Tag.create!([
     { name: '和食' },
     { name: '洋食' },
