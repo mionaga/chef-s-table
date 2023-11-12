@@ -18,7 +18,7 @@
   <div class="col">
     <div class="form-group">
       <%= f.label :"[分量]" %>
-      <%= f.text_field :quantity, placeholder: "分量（必須）", class: 'form-control light-placeholder' %>
+      <%= f.text_field :quantity, placeholder: "分量（必須）", class: 'form-control light-placeholder', style:'width: 255px' %>
     </div>
   </div>
   <div class="col">
@@ -45,3 +45,8 @@
   });
 </script>
 
+<style>
+  #recipe_recipe_ingredients_attributes_0_category_id {
+    width: 255px;
+  }
+</style>
