@@ -3,9 +3,9 @@
 
     <div class="row">
 
-      <div class ="col">
+      <div class ="col-md-12">
         <h2>会員一覧</h2>
-    
+
         <div class="row">
 
              <% @end_users.each do |end_user| %>
@@ -36,6 +36,6 @@
     </div>
     <div class="row justify-content-center"> <%= paginate @end_users %>
     </div>
-  
+
   </div>
 </div>

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
  devise_scope :end_user do
   post 'end_users/guest_sign_in', to: 'end_users/sessions#guest_sign_in'
  end
+ 
+
 
  # 管理者用
  # URL /admin/sign_in ...
