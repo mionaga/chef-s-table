@@ -1,2 +1,8 @@
-<h1>Admin::Ingredients#show</h1>
-<p>Find me in app/views/admin/ingredients/show.html.erb</p>
+<div class="container">
+  
+  <%= render 'public/ingredients/show' %>
+  
+  <div class="row">
+    <%= link_to '編集する', edit_admin_ingredient_path(@ingredient), class: "btn btn-sm btn-success" %>
+  </div>
+</div>
