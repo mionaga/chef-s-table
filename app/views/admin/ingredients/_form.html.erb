@@ -1,0 +1,16 @@
+<h5>画像</h5>
+<%= f.file_field :image, accept: "image/*" %>
+<% if f.object.image.attached? %>
+  <%= image_tag f.object.get_image(200, 200) %>
+<% end %>
+
+<h5>食材名</h5>
+<%= f.text_field :name %>
+
+<h5>食材カテゴリー</h5>
+<%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, f.object.category_id), include_blank: true %>
+
+<h5>食材説明</h5>
+<%= f.text_area :description %>
+
+<%= f.submit '更新' %>

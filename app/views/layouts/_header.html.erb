@@ -32,18 +32,14 @@
                           </li>
                           <li class="nav-item mx-2 my-4">
                             <%= link_to  admin_categories_path, style: "color: white;" do %>
-                              <i class="fa-regular fa-clipboard"></i>カテゴリー一覧
+                              <i class="fa-regular fa-clipboard"></i>食材カテゴリー一覧
                             <% end %>
                           </li>
                            <li class="nav-item mx-2 my-4">
                             <%= link_to  new_admin_ingredient_path, style: "color: white;" do %>
                               <i class="fa-solid fa-folder-open"></i>食材図鑑追加フォーム
                             <% end %>
-                           <li class="nav-item mx-2 my-4">
-                            <%= link_to  categories_path, style: "color: white;" do %>
-                              <i class="fa-solid fa-book-open"></i>食材図鑑
-                            <% end %>
-                          </li>
+                         </li>
                           <li class="nav-item mx-2 my-4">
                             <%= link_to  destroy_admin_session_path, style: "color: white;", method: :delete do %>
                               <i class="fa-solid fa-arrow-right-from-bracket"></i>ログアウト

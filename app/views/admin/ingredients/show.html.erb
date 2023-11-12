@@ -1,5 +1,8 @@
 <div class="container">
+  
+  <%= render 'public/ingredients/show' %>
+  
   <div class="row">
-    <div class="col"><%= @ingredient.name %></div>
+    <%= link_to '編集する', edit_admin_ingredient_path(@ingredient), class: "btn btn-sm btn-success" %>
   </div>
 </div>

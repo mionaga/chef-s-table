@@ -1,0 +1,14 @@
+
+  <div class="row">
+    <div class="col"><%= @ingredient.name %></div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-1">
+      <%= image_tag @ingredient.get_image(300, 300) %>
+    </div>
+    <div class="col-7">
+      <%= @ingredient.description %>
+    </div>
+  </div>
+  
+
