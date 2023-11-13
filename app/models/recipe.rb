@@ -26,8 +26,16 @@ class Recipe < ApplicationRecord
   end
   
    def favorited_by?(end_user)
-     favorites.exists?(end_user_id: end_user.id)
-   end   
+     end_user.present? && favorites.exists?(end_user_id: end_user.id)
+   end
+   
+   def self.liked_recipes(end_user, page, per_page)
+     includes(:favorites)#favoritesテーブルを統合
+       .where(favorites: { end_user_id: end_user.id })
+       .order(create_at: :desc)
+       .page(page)
+       .per(per_page)
+   end
 
   
 end

@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h4 class="row-justify-content-center"><%= "#{current_end_user.nickname}さんがいいねした投稿" %></h4>
+       
+        <% @liked_recipes.each do |recipe| %>
+         
+         <div class="row mt-3">
+           <h6>
+             レシピ名：
+              <%= link_to recipe_path(recipe) do %>
+                <%= recipe.title %>
+              <% end %> 
+           </h6>
+         </div>
+         <div class="row">
+           <h6>
+             投稿者：
+             <%= link_to end_user_path(recipe.end_user) do%>
+               <%= recipe.end_user.nickname %>
+             <% end %>
+           </h6>
+         </div>
+         <div class="row mt-3" >
+           <div class="col-4 offset-1">
+             <%= link_to recipe_path(recipe) do %>
+               <%= image_tag recipe.get_photo(150,150) %>
+             <% end %>   
+           </div>
+           <div class="col-6 offset-1">
+             <div class="row">
+               <h6>レシピ紹介：<%= recipe.description %></h6>
+             </div>
+             <div class="row">
+               <h6>所要時間：<%= recipe.cooking_time.time_in_minuites %></h6>
+             </div>
+           </div>
+          </div>
+  
+        <% end %>
+      
+      <div class="d-flex justify-content-center">
+        <!--<!%= paginate @liked_recipes, theme: 'bootstrap-5' %>-->
+      </div>
+    </div>
+  </div>
+</div>

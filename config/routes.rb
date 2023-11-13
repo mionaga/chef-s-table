@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+ 
  # URL /customers/sign_in ...
  devise_for :end_users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
     resources :end_users, only: [:index, :show, :edit, :update]
     resources :ingredients
     resources :categories, only: [:index, :create, :edit, :update, :destroy]
+    resources :recipes, only: [:index, :show, :destroy]
+    resources :post_comments, only: [:index, :destroy]
 
   end
 
@@ -47,7 +50,12 @@ Rails.application.routes.draw do
     get 'recipes/tag/:name', to: "recipes#tag_search"
     get 'recipes/search', to: 'recipes#search'
 
-    resources :end_users
+    resources :end_users, params: :account do
+     member do
+      # いいねした一覧
+      get :liked_recipes
+     end
+    end
     resources :ingredients, only: [:index, :show]
     resources :recipes do
      resource :favorite, only: [:create, :destroy]
