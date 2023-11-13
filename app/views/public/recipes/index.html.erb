@@ -32,6 +32,7 @@
                           <% end %> 
                           <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
                       </P>
+                      <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
                    </div>
                   </div>
                 </div>

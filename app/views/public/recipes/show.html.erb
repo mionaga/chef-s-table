@@ -103,6 +103,24 @@
           </tbody>
         </table>
 
+        <div>
+          <p>コメント件数：<%= @recipe.post_comments.count %></p>
+            <% @recipe.post_comments.each do |post_comment| %>
+              <p><%= image_tag post_comment.end_user.get_profile_image(100,100) %></p>
+                 <%= post_comment.end_user.nickname %>
+                 <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
+                 <% if post_comment.end_user == current_end_user %>
+                   <%= link_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete %>
+                 <% end %>
+            <% end %>
+        </div>
+        <div>
+          <%= form_with model: [@recipe, @post_comment] do |f| %>
+            <%= f.text_area :comment, placeholder: "コメントをここに", class: "comment-text-area" %>
+            <%= f.submit "送信する" %>
+          <% end %>
+        </div>
+
     </div>
   </div>
 </div>
