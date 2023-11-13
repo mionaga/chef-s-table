@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :end_users
     resources :ingredients, only: [:index, :show]
     resources :recipes do
+     resource :favorite, only: [:create, :destroy]
      resources :post_comments, only: [:create,:destroy]
     end
 

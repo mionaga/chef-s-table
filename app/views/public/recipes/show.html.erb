@@ -113,6 +113,19 @@
                    <%= link_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete %>
                  <% end %>
             <% end %>
+            <% if @recipe.favorited_by?(current_end_user) %>
+              <p>
+                <%= button_to recipe_favorite_path(@recipe), method: :delete, remote: true, class: 'favorite-button' do %>
+                 ♥<%= @recipe.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% else %>
+              <p>
+                <%= button_to recipe_favorite_path(@recipe), method: :post, remote: true, class: 'favorite-button' do %>
+                  ♡<%= @recipe.favorites.count %> いいね
+                <% end %>
+              </p>
+            <% end %>
         </div>
         <div>
           <%= form_with model: [@recipe, @post_comment] do |f| %>

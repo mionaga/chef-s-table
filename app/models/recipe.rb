@@ -1,9 +1,11 @@
 class Recipe < ApplicationRecord
+  
   belongs_to :end_user
-
   belongs_to :cooking_time
+  has_one_attached :photo
   has_many :categories, through: :recipe_iingredients, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
   # reject_if: :all_blank　不要なカラレコードの生成を防ぐ
   # allow_destroy: trueは関連するこれコードを簡単に削除できるようにする
@@ -13,7 +15,7 @@ class Recipe < ApplicationRecord
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
   
-  has_one_attached :photo
+  
   
   def get_photo(width, height)
     unless photo.attached?
@@ -22,6 +24,10 @@ class Recipe < ApplicationRecord
     end
     photo.variant(resize_to_fill: [width, height], gravity: :center).processed
   end
+  
+   def favorited_by?(end_user)
+     favorites.exists?(end_user_id: end_user.id)
+   end   
 
   
 end
