@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_11_09_104943) do
+ActiveRecord::Schema.define(version: 2023_11_13_064601) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,10 +83,25 @@ ActiveRecord::Schema.define(version: 2023_11_09_104943) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
+  create_table "favorites", force: :cascade do |t|
+    t.integer "end_user_id"
+    t.integer "recipe_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
     t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "post_comments", force: :cascade do |t|
+    t.text "comment"
+    t.integer "end_user_id"
+    t.integer "recipe_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
