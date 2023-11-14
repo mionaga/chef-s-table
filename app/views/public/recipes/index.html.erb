@@ -6,6 +6,16 @@
 
       <div class ="col-md-12">
         <h2>レシピ一覧</h2>
+        
+        <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+          <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み検索',
+                       onchange: 'submit(this.form);'
+                     }
+          %>
+        <% end %>
 
         <div class="row">
 
@@ -27,6 +37,10 @@
                            <%= recipe.title %>
                          <% end %>
                        <% end %>
+                     </p>
+                     <p class="card-description">
+                       <%= recipe.tag.name %>
+                    
                      </p>
                       <p class="card-description">
                         <%= recipe.description %>
