@@ -28,7 +28,7 @@
                         <% end %>
                       <div class="card-body">
                         <p class="card-title">
-                          <% if defined?(admin) && admin.signed_in? %>
+                          <% if admin.present? %>
                             <%= link_to admin_ingredient_path(ingredient) do %>
                               <%= ingredient.name %>
                             <% end %>

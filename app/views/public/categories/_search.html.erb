@@ -1,0 +1,11 @@
+<div class="check_box">
+  <%= form.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+    <div class='form-check'>
+   　 <%= tag.label do %>
+    　  <%= tag.check_box %>
+    　  <%= tag.text %>
+    　<% end %>
+    </div>
+  <% end %>
+</div>
+

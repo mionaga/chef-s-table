@@ -35,6 +35,10 @@ class Public::EndUsersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
+  
+  def liked_recipes
+    @liked_recipes = Recipe.liked_recipes(current_end_user, params[:page], 12)
+  end
 
   private
 

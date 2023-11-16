@@ -2,7 +2,11 @@ class Public::RecipesController < ApplicationController
   protect_from_forgery
 
   def index
-    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps).page(params[:page]).per(8)
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
+    if params[:tag_id].present?
+      @recipes = @recipes.where(tag_id: params[:tag_id])
+    end
+    @recipes = @recipes.page(params[:page]).per(8)
   end
 
   def new
@@ -14,17 +18,19 @@ class Public::RecipesController < ApplicationController
  def create
    @recipe = Recipe.new(recipe_params)
    @recipe.end_user_id = current_end_user.id
-   if @recipe.save
-     redirect_to recipe_path(@recipe), notice: '投稿しました'
-   else
+   if @recipe.save == false
      flash.now[:alert] = '投稿に失敗しました。必須項目を入力してください'
      render :new
+     return
    end
+
+   redirect_to recipe_path(@recipe), notice: '投稿しました'
  end
 
 
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -41,7 +47,7 @@ class Public::RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(
-      :title, :description, :photo, :cooking_time_id,  :profile_image,
+      :title, :description, :photo, :cooking_time_id, :tag_id,
       recipe_ingredients_attributes: [:id, :name, :quantity, :_destroy, :category_id],
       steps_attributes: [:id,:ingredients, :description, :_destroy]
       )
