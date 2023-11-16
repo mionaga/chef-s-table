@@ -31,9 +31,7 @@
         <% @categories.each do |category|%>
         <tr align="center">
           <td>
-            <%= link_to recipe_path(category.id), class:"admin_link" do  %>
-              <%= category.name %>
-            <% end %>
+            <%= category.name %>
           </td>
           <td>
             <%= link_to "編集", edit_admin_category_path(category.id) %>
