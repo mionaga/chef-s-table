@@ -1,0 +1,7 @@
+<% if @model == "end_user" %>
+  <h3>会員検索　"<%= @word %>"</h3>
+  <%= render 'public/end_users/index', end_users: @records %>
+<% else @model == "recipe" %>
+  <h3>レシピ検索　"<%= @word %>"</h3>
+  <%= render 'public/recipes/index', recipes: @records %>
+<% end %>  
