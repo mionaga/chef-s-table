@@ -6,8 +6,24 @@ class Admin::RecipesController < ApplicationController
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
-
   end
+  
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.update(recipe_params)
+    redirect_to @recipe
+  end
+  
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to admin_recipes_path
+  end  
+
   
   private
 
