@@ -1,0 +1,8 @@
+<% if end_user_signed_in? %>
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :word %>
+    <%= f.select :model, options_for_select({"会員名" => "end_user", "レシピ" => "recipe"}) %>
+    <%= f.select :search, options_for_select({"完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backword", "部分一致" => "partial" }) %>
+    <%= f.submit "検索" %>
+  <% end %>
+<% end %>  

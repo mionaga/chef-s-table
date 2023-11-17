@@ -39,6 +39,18 @@ class Recipe < ApplicationRecord
        .page(page)
        .per(per_page)
    end
+   
+   def self.looks(search, word)
+    if search == 'parfect'
+      recipes = Recipe.where("title Like?", "#{word}")
+    elsif search == 'forward'
+      recipes = Recipe.where("title Like?", "#{word}%")
+    elsif search == 'backward'
+      recipes = Recipe.where("title Like?", "%#{word}")
+    else search == 'partial'
+      recipes = Recipe.where("title Like?", "%#{word}%")
+    end
+  end
 
 
 end
