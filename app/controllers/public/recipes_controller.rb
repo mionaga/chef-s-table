@@ -23,7 +23,6 @@ class Public::RecipesController < ApplicationController
      render :new
      return
    end
-
    redirect_to recipe_path(@recipe), notice: '投稿しました'
  end
 
@@ -42,6 +41,12 @@ class Public::RecipesController < ApplicationController
     @recipe.update(recipe_params)
     redirect_to @recipe
   end
+  
+  def destroy
+    recipe = Recipe.find(params[:id])
+    recipe.destroy
+    redirect_to recipes_path
+  end  
 
   private
 

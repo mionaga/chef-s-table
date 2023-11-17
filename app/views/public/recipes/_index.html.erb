@@ -1,0 +1,69 @@
+
+<div class="album bg-light">
+  <div class="container">
+
+    <div class="row">
+
+      <div class ="col-md-12">
+        <h2>レシピ一覧</h2>
+        
+        <%= form_tag recipes_path, method: :get, class: 'boards__searchForm' do %>
+          <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: 'タグで絞り込み検索',
+                       onchange: 'submit(this.form);'
+                     }
+          %>
+        <% end %>
+
+        <div class="row">
+
+             <% recipes.each do |recipe| %>
+                <div class="col-md-3">
+                   <div class="card custom-card mb-4 shadow-lg">
+                     <%= link_to recipe_path(recipe) do %>
+                       <%= image_tag recipe.get_photo(200, 200),class:"card-img-top"; %>
+                     <% end %>
+                   <div class="card-body">
+
+                     <p class="card-title">
+                       <% if current_admin %>
+                         <%= link_to admin_recipe_path(recipe) do %>
+                           <%= recipe.title %>
+                         <% end %>
+                       <% else %>
+                         <%= link_to recipe_path(recipe) do %>
+                           <%= recipe.title %>
+                         <% end %>
+                       <% end %>
+                     </p>
+                     <p class="card-description">
+                       <%= recipe.tag.name %>
+                    
+                     </p>
+                      <p class="card-description">
+                        <%= recipe.description %>
+                      </p>
+                      <P class="card-end_user">
+                        投稿者：
+                          <%= link_to end_user_path(recipe.end_user) do %>
+                            <%= recipe.end_user.nickname %>さん
+                          <% end %>
+                          <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
+                      </P>
+                      <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
+                   </div>
+                  </div>
+                </div>
+              <% end %>
+
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <%= paginate recipes %>
+    </div>
+
+  </div>
+</div>
