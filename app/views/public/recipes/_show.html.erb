@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row" style="margin-top: 20px;">
-    <div class="col-7 offset-1">
+    <div class="col-6 offset-1">
       <div class="row">
         <h4>レシピ名：<%= recipe.title %></h4>
       </div>
@@ -11,12 +11,15 @@
          <div class="row">
            <h6>レシピ紹介：<%= recipe.description %></h6>
          </div>
+           <div class="row">
+             <h6><%= @recipe.tag.name %></h6>
+           </div>
           <div class="row">
            <h6>所要時間：<%= recipe.cooking_time.time_in_minuites %></h6>
          </div>
       </div>
 
-    <div class="col-4" style="margin-bottom: 10px;">
+    <div class="col-5" style="margin-bottom: 10px; margin-top: 60px;">
       <table class="table table-sm">
         <tr>
           <th>[投稿者紹介]</th>
@@ -102,11 +105,6 @@
 
           </tbody>
         </table>
-
-        <div>
-          <p>コメント件数：<%= recipe.post_comments.count %></p>
-           
-        </div>
 
     </div>
   </div>

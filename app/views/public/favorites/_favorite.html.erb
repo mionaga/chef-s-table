@@ -1,0 +1,16 @@
+<div class="favorite-section">
+  <div class="favorite-button-container">
+    <% if recipe.favorited_by?(current_end_user) %>
+      <%= button_to recipe_favorite_path(recipe), method: :delete, remote: true, data: {"turbolinks" => false}, class: 'favorite-button' do %>
+        ♥ <%= recipe.favorites.count %> いいね
+      <% end %>
+    <% else %>
+      <%= button_to recipe_favorite_path(recipe), method: :post, remote: true, data: {"turbolinks" => false}, class: 'favorite-button' do %>
+        ♡ <%= recipe.favorites.count %> いいね
+      <% end %>
+    <% end %>
+  </div>
+  <div class="like-count-container">
+    <%= "#{recipe.favorites.count}" %> 個のいいね
+  </div>
+</div>
