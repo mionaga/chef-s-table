@@ -9,12 +9,12 @@
       <%= f.text_field :name, placeholder: "材料名（必須）", class: 'form-control light-placeholder' %>
     </div>
   </div>
-  <div class="col">
-    <div class="form-group">
-      <%= f.label :"[カテゴリー]" %>
-      <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "選択して下さい" %>
-    </div>
-  </div>
+  <!--<div class="col">-->
+    <!--<div class="form-group">-->
+      <!--<!%= f.label :"[カテゴリー]" %>-->
+      <!--<!%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "選択して下さい" %>-->
+  <!--</div>-->
+  <!--</div>-->
   <div class="col">
     <div class="form-group">
       <%= f.label :"[分量]" %>

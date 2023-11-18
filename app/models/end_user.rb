@@ -32,6 +32,18 @@ class EndUser < ApplicationRecord
   def active_for_authentication?
     super && (is_deleted == false)
   end
+  
+  def self.looks(search, word)
+    if search == 'parfect'
+      end_users = EndUser.where("nickname Like?", "#{word}")
+    elsif search == 'forward'
+      end_users = EndUser.where("nickname Like?", "#{word}%")
+    elsif search == 'backward'
+      end_users = EndUser.where("nickname Like?", "%#{word}")
+    else search == 'partial'
+      end_users = EndUser.where("nickname Like?", "%#{word}%")
+    end
+  end
 
  
 

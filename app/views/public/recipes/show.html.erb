@@ -1,143 +1,26 @@
 <div class="container">
+  <%= render 'show', recipe: @recipe %>
+        
+
 
   <div class="row" style="margin-top: 20px;">
-    <div class="col-7 offset-1">
-      <div class="row">
-        <h4>レシピ名：<%= @recipe.title %></h4>
-      </div>
-      <div class="row">
-        <%= image_tag @recipe.get_photo(400,300) %>
-      </div>
-         <div class="row">
-           <h6>レシピ紹介：<%= @recipe.description %></h6>
-         </div>
-         <div class="row">
-           <h6>
-             <%= @recipe.tag.name %>
-             
-           </h6>
-         </div>
-          <div class="row">
-           <h6>所要時間：<%= @recipe.cooking_time.time_in_minuites %></h6>
-         </div>
-      </div>
-
-    <div class="col-4" style="margin-bottom: 10px;">
-      <table class="table table-sm">
-        <tr>
-          <th>[投稿者紹介]</th>
-        </tr>
-        <tr>
-          <td>
-            <%= link_to end_user_path(@recipe.end_user) do %>
-              <%= image_tag @recipe.end_user.get_profile_image(50,50) %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-           <td>
-            投稿者：<%= link_to end_user_path(@recipe.end_user) do %>
-              <%= @recipe.end_user.nickname %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>専門料理：<%= @recipe.end_user.specialty %></td>
-        </tr>
-        <tr>
-          <td>自己紹介：<%= @recipe.end_user.bio %></td>
-        </tr>
-      </table>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-4 offset-1" style="margin-top: 20px;">
-      <div class="row">
-        <table class="table table-bordered">
-          <thead>
-            <tr bgcolor="#94bcb7">
-              <th>材料</th>
-              <th>使用量</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% @recipe.recipe_ingredients.each do |recipe_ingredient| %>
-
-            <tr>
-              <td><%= recipe_ingredient.name %></td>
-              <td> <%= recipe_ingredient.quantity %></td>
-            </tr>
-
-            <% end %>
-
-          </tbody>
-        </table>
-      </div>
-
-      <div class="row">
-        <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-          <%= link_to 'レシピ編集', edit_recipe_path(@recipe), data: {"turbolinks" => false}, class:"btn", style: "margin-top: 6px; background-color: #8aa7a1; color: #ffffff" %>
-        <% end %>
-     </div>
-     <div class="row">
-       <% if end_user_signed_in? && @recipe.end_user == current_end_user %>
-         <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn", style: "margin-top: 6px; background-color: #788897; color: #ffffff" %>
-       <% end %>
-     </div>
-
-    </div>
-    <div class="col-7" style="margin-top: 20px;">
-
-      <table class="table table-hober table-inverse">
-          <thead>
-            <tr bgcolor="#94bcb7">
-              <th>作り方</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <% @recipe.steps.each do |step| %>
-
-              <tr>
-                <td><%= step.description %></td>
-              </tr>
-
-            <% end %>
-
-          </tbody>
-        </table>
+    <div class="col-7 offset-1"> 
+        
 
         <div>
-          <p>コメント件数：<%= @recipe.post_comments.count %></p>
-            <% @recipe.post_comments.each do |post_comment| %>
-              <p><%= image_tag post_comment.end_user.get_profile_image(30,30) %></p>
-                 <%= post_comment.end_user.nickname %>
-                 <%= post_comment.created_at.strftime('%Y/%m/%d') %><%= post_comment.comment %>
-                 <% if post_comment.end_user == current_end_user %>
-                   <%= link_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete %>
-                 <% end %>
-            <% end %>
-            <% if @recipe.favorited_by?(current_end_user) %>
-              <p>
-                <%= button_to recipe_favorite_path(@recipe), method: :delete, remote: true, class: 'favorite-button' do %>
-                 ♥<%= @recipe.favorites.count %> いいね
-                <% end %>
-              </p>
-            <% else %>
-              <p>
-                <%= button_to recipe_favorite_path(@recipe), method: :post, remote: true, class: 'favorite-button' do %>
-                  ♡<%= @recipe.favorites.count %> いいね
-                <% end %>
-              </p>
-            <% end %>
+          <p>コメント件数：<span id="comment_count"><%= @recipe.post_comments.count %></span></p>
+          
+          <div id="post_comments">
+            <%= render 'public/post_comments/show', {recipe: @recipe} %>
+          </div>
+          
+          <p id="favorite_buttons_<%= @recipe.id %>" >
+            <%= render 'public/favorites/favorite', recipe: @recipe %>
+          </p>  
+          
         </div>
-        <div>
-          <%= form_with model: [@recipe, @post_comment] do |f| %>
-            <%= f.text_area :comment, placeholder: "コメントをここに", class: "comment-text-area" %>
-            <%= f.submit "送信する" %>
-          <% end %>
+        <div id="comment-form">
+         <%= render 'public/post_comments/form', {recipe: @recipe, post_comment: @post_comment} %>
         </div>
 
     </div>
