@@ -1,4 +1,8 @@
+<br>
+<h5>コメント欄</h5>
+  
 <%= form_with model: [recipe, post_comment], local: false do |f| %>
-  <%= f.text_area :comment, placeholder: "コメントをここに", class: "comment-text-area" %>
+  <%= f.text_area :comment, placeholder: "コメントをここに", class: "comment-text-area", id: "textarea" %>
   <%= f.submit "送信する" %>
 <% end %>
+

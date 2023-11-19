@@ -10,7 +10,7 @@
 
         <div class="col">
           <h4><%= @end_user.nickname %>さんのページ</h4>
-          <% if @end_user == current_end_user %>
+          <% if @end_user == current_end_user && !@end_user.guest_user? %>
             <%= link_to "プロフィール編集", edit_end_user_path(@end_user), class: "btn", style: "margin-top: 6px; background-color: #b9d0b1; color: #ffffff" %>
           <% end %>
         </div>

@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script src="https://kit.fontawesome.com/1ccc9ca859.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -21,6 +22,11 @@
       padding: 15px; /* 適切な余白を設定 */
       text-align: center;
     }
+    
+    .col-md-3 {
+      padding: 20px
+    }
+    
     .col-md-6 {
       padding: 20px
     }
@@ -31,7 +37,7 @@
 
 
     .container-fluid {
-      margin-top: 10px;
+      margin-top: 20px;
       margin-right: auto;
       margin-left: auto;
 

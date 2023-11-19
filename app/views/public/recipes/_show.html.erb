@@ -26,16 +26,29 @@
         </tr>
         <tr>
           <td>
-            <%= link_to end_user_path(recipe.end_user) do %>
+            <% if admin.present? %>
+              <%= link_to admin_end_user_path(recipe.end_user) do %>
+                <%= image_tag recipe.end_user.get_profile_image(50,50) %>
+              <% end %>
+            <% else %>
+              <%= link_to end_user_path(recipe.end_user) do %>
               <%= image_tag recipe.end_user.get_profile_image(50,50) %>
+              <% end %>
             <% end %>
           </td>
         </tr>
         <tr>
            <td>
-            投稿者：<%= link_to end_user_path(recipe.end_user) do %>
-              <%= recipe.end_user.nickname %>
-            <% end %>
+            投稿者：
+            <% if admin.present? %>
+              <%= link_to admin_end_user_path(recipe.end_user) do %>
+                <%= recipe.end_user.nickname %>
+              <% end %>
+            <% else %>
+              <%= link_to end_user_path(recipe.end_user) do %>
+                <%= recipe.end_user.nickname %>
+              <% end %>
+            <% end %> 
           </td>
         </tr>
         <tr>
