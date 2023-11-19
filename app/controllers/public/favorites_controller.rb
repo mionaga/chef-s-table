@@ -1,5 +1,5 @@
 class Public::FavoritesController < ApplicationController
-  
+
   def create
     @recipe = Recipe.find(params[:recipe_id])
     favorite = current_end_user.favorites.new(recipe_id: @recipe.id)
@@ -9,9 +9,9 @@ class Public::FavoritesController < ApplicationController
 
   def destroy
     @recipe = Recipe.find(params[:recipe_id])
-    favorite = current_end_user.favorites.find_by(recipe_id: @recipe.id)
-    favorite.destroy
+    @favorite = current_end_user.favorites.find_by(recipe_id: @recipe.id)
+    @favorite.destroy
     # redirect_to recipe_path(recipe)
   end
-  
+
 end

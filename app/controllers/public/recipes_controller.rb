@@ -5,6 +5,8 @@ class Public::RecipesController < ApplicationController
     @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
     if params[:tag_id].present?
       @recipes = @recipes.where(tag_id: params[:tag_id])
+    else params[:cooking_time_id].present?
+      @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])  
     end
     @recipes = @recipes.page(params[:page]).per(8)
   end
@@ -30,6 +32,7 @@ class Public::RecipesController < ApplicationController
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
+    
   end
 
   def edit
