@@ -1,81 +1,20 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert">
+  <p class="notice text-center" style="color:blue;"><%= flash[:alert] %></p></div>
+<% end %>
+
 <div class="container">
   <div class="row justify-content-center">
     <h2>プロフィール編集</h2>
   </div>
   <div class="row justify-content-center">
-    
-    <%= form_with model: @end_user do |f| %>
-    
-    <table class="mx-4 table-sm">
-      <tr class="field">
-        <th>
-          <label for="inputImage">イメージ画像</label>
-        </th>
-        <th>
-          <%= image_tag @end_user.get_profile_image(150, 150) %>
-        </th>
-      
-        <td>
-          <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        </td>
-      </tr>
-        
-      <tr class="field">
-        <th>
-          <label for="inputFamilyName">名前（姓）</label>
-        </th>
-        <th>
-          <%= f.text_field :family_name, autofocus: true, id:"inputName", placeholder:"姓" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th>
-          <label for="inputFirstName">名前（名）</label>
-        </th>
-        <th>
-          <%= f.text_field :first_name, autofocus: true, id:"inputName", placeholder:"名" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th>
-          <label for="inputNickName">ニックネーム</label>
-        </th>
-        <th>
-          <%= f.text_field :nickname, autofocus: true, id:"inputName", placeholder:"ニックネーム" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th>
-          <label>専門料理</label>
-        </th>
-        <th>
-          <%= f.text_field :specialty, autofocus: true, id:"inputName", placeholder:"日本料理" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th>
-          <label for="career_intro">経歴</label>
-        </th>
-        <th>
-          <%= f.text_area :career_intro, autofocus: true, id:"inputName", size: "50*20" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th>
-          <label for="inputName">自己紹介</label>
-        </th>
-        <th>
-          <%= f.text_area :bio, autofocus: true, id:"inputName", size: "50*20" %>
-        </th>
-      </tr>
-      <tr class="field">
-        <th></th>
-        <th> <%= f.submit "変更を保存" %></th>
-      </tr>
-    </table>
 
-    <% end %>
-    
+
+<%= form_with model: @end_user, local: true do |f| %>
+
+
+<% end %>
+
   </div>
 </div>
 

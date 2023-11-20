@@ -1,5 +1,6 @@
- <%= form_with model: recipe, url: recipes_path, method: :post, remote: true do |f| %>
+<%= form_with(model: recipe, method: recipe.persisted? ? :patch : :post, remote: true) do |f| %>
 
+<!--<!%= form_with model: recipe, url: recipes_path, method: :post, remote: true do |f| %>-->
 
   <section class="description">
     <div class="description__inner">
@@ -9,9 +10,9 @@
           <p>[料理完成写真]</p>
           </div>
           <label class="img-file">
-            <%= f.file_field :image, accept: "image/*" %>
-            <% if @recipe.photo.attached? %>
-              <%= image_tag @recipe.get_photo(200,200) %>
+            <%= f.file_field :photo, accept: "image/*" %>
+            <% if recipe.photo.attached? %>
+              <%= image_tag recipe.get_photo(200,200) %>
             <% end %>
           </label>
 
@@ -30,7 +31,7 @@
 
          <div class="form-group">
           <%= f.label :"[タグ]" %>
-          <%= f.collection_select :tag_ids, Tag.all, :id, :name, include_blank: "選択して下さい（必須）" %>
+          <%= f.collection_select :tag_id, Tag.all, :id, :name, include_blank: "選択して下さい（必須）" %>
         </div>
 
 
@@ -115,5 +116,4 @@
     });
 
     </script>
-
-    <% end %>
+ <% end %>   
