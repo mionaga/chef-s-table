@@ -1,7 +1,71 @@
-<div class="conteiner">
-  <div class="row">
-    <div class="col">
-      
+<style>
+  body.top-page {
+    margin: 0; /* ボディのマージンをリセット */
+    padding: 0;
+    background-color: #9ba5a0;
+  }
+
+
+
+  .container-fluid {
+    background-color: #9ba5a0;
+  }
+
+  .card {
+    margin: 10px; /* 余白のサイズを調整 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* カードに影を追加（任意） */
+  }
+
+  .card-img-top {
+    border-radius: 8px 8px 0 0; /* 画像の角を丸くする（任意） */
+  }
+
+  .card-body {
+    padding: 20px; /* カードの中のコンテンツに余白を追加 */
+  }
+</style>
+
+<div class="container-fluid">
+  <div class="row" style="margin-left: 15px;">
+    <div class="col-3" style="border: 1px solid #000; background-color: white; padding: 30px;">
+      <div class="row text-center">
+        <h4>シェフの皆さん！<br>
+          賄い作りの時間ですよ</h4>
+      </div>
+      <div class="row">
+        <p>Sample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample TextSample Text</p>
+      </div>
+
+
+    </div>
+    <div class="col-9">
+      <%= image_tag 'cooks-1661136_1280', class: "img-fulid" %>
     </div>
   </div>
 </div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <div class="card-deck">
+    <% @new_recipes.each do |recipe| %>
+      <div class="card">
+        <% if recipe.photo.attached? %>
+          <%= image_tag recipe.photo.variant(resize: "100x200"), class: "card-img-top" %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= recipe.title %></h5>
+          <p class="card-text"><small class="text-muted">Last updated <%= time_ago_in_words(recipe.created_at) %> ago</small></p>
+        </div>
+      </div>
+    <% end %>
+    </div>
+
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+
+
+</div>
+

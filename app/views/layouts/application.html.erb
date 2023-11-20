@@ -19,14 +19,14 @@
 
     footer {
       background-color: #9ba5a0;
-      padding: 15px; /* 適切な余白を設定 */
+      padding: 5px; /* 適切な余白を設定 */
       text-align: center;
     }
-    
+
     .col-md-3 {
       padding: 20px
     }
-    
+
     .col-md-6 {
       padding: 20px
     }
@@ -41,6 +41,10 @@
       margin-right: auto;
       margin-left: auto;
 
+    }
+    
+    .container-m{
+      margin-top: 80px;
     }
 
     .boards_searchForm {
@@ -84,7 +88,7 @@
   </style>
   </head>
 
-  <body>
+  <body class="<%= controller_name == 'homes' && action_name == 'top' ? 'top-page' : '' %>">
     <%= render 'layouts/header' %>
     <%= yield %>
 

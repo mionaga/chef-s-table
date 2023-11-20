@@ -8,6 +8,9 @@ class EndUser < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_one_attached :profile_image
+  
+  validates:family_name, :first_name, presence: true
+  validates:nickname,uniqueness:true
 
   def get_profile_image(width, height)
     unless profile_image.attached?
