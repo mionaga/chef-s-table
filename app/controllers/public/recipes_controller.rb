@@ -1,12 +1,11 @@
 class Public::RecipesController < ApplicationController
-  protect_from_forgery
 
   def index
     @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
     if params[:tag_id].present?
       @recipes = @recipes.where(tag_id: params[:tag_id])
-    else params[:cooking_time_id].present?
-      @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])  
+    elsif params[:cooking_time_id].present?
+      @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])
     end
     @recipes = @recipes.page(params[:page]).per(8)
   end
@@ -25,14 +24,14 @@ class Public::RecipesController < ApplicationController
      render :new
      return
    end
-   redirect_to recipe_path(@recipe), notice: '投稿しました'
+   redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
  end
 
 
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
-    
+
   end
 
   def edit
@@ -41,15 +40,19 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    redirect_to @recipe
+    if @recipe.update(recipe_params) == false
+      flash.now[:alert] = 'レシピの更新に失敗しました。必須項目を入力してください'
+      render :edit
+      return
+    end  
+    redirect_to @recipe, notice: 'レシピの更新に成功しました'
   end
-  
+
   def destroy
     recipe = Recipe.find(params[:id])
     recipe.destroy
     redirect_to recipes_path
-  end  
+  end
 
   private
 

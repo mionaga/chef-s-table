@@ -51,7 +51,8 @@ Rails.application.routes.draw do
     get 'recipes/tag/:name', to: "recipes#tag_search"
     get 'recipes/search', to: 'recipes#search'
 
-    resources :end_users, params: :account do
+    # resources :end_users, params: :account do
+    resources :end_users do
      member do
       # いいねした一覧
       get :liked_recipes

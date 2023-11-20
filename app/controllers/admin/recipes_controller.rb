@@ -1,6 +1,13 @@
 class Admin::RecipesController < ApplicationController
+  
   def index
-    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps).page(params[:page]).per(8)
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
+    if params[:tag_id].present?
+      @recipes = @recipes.where(tag_id: params[:tag_id])
+    elsif params[:cooking_time_id].present?
+      @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])
+    end
+    @recipes = @recipes.page(params[:page]).per(8)
   end
 
   def show
@@ -13,9 +20,13 @@ class Admin::RecipesController < ApplicationController
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
-    @recipe.update(recipe_params)
-    redirect_to @recipe
+   @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params) == false
+      flash.now[:alert] = 'レシピの更新に失敗しました。必須項目を入力してください'
+      render :edit
+      return
+    end  
+    redirect_to @recipe, notice: 'レシピの更新に成功しました'
   end
   
   def destroy

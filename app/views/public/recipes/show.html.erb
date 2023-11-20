@@ -1,9 +1,12 @@
+<% if flash[:notice] %>
+  <div class="alert alert-success" role="alert">
+  <p class="notice text-center" style="color:green;"><%= flash[:notice] %></p></div>
+<% end %>
+
 <div class="container">
   <%= render 'show', recipe: @recipe, admin: false %>
         
-
-
-  <div class="row" style="margin-top: 20px;">
+　<div class="row" style="margin-top: 20px;">
     <div class="col-7 offset-1"> 
         
 
@@ -14,9 +17,9 @@
             <%= render 'public/post_comments/show', {recipe: @recipe} %>
           </div>
           
-          <p id="favorite_buttons_<%= @recipe.id %>" >
+        
             <%= render 'public/favorites/favorite', recipe: @recipe %>
-          </p>  
+          
           
         </div>
       </div>
