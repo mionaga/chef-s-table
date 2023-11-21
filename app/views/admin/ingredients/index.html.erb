@@ -9,6 +9,9 @@
       <%= ingredient.category.name %>
       <%= link_to ingredient.name, admin_ingredient_path(ingredient) %>
       <%= ingredient.description %>
-    <% end %>  
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @ingredients %>
   </div>
 </div>

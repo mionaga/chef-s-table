@@ -7,7 +7,7 @@ class Public::RecipesController < ApplicationController
     elsif params[:cooking_time_id].present?
       @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])
     end
-    @recipes = @recipes.page(params[:page]).per(8)
+    @recipes = @recipes.page(params[:page]).per(6)
   end
 
   def new

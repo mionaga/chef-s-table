@@ -1,46 +1,56 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h4 class="row-justify-content-center"><%= "#{current_end_user.nickname}さんがいいねした投稿" %></h4>
-       
+      <div class="row-justify-content-center">
+        <h4 class="heading-title"><%= "#{current_end_user.nickname}さんがいいねした投稿" %></h4>
+      </div>
+      
+      <div class="row">
         <% @liked_recipes.each do |recipe| %>
-         
-         <div class="row mt-3">
-           <h6>
-             レシピ名：
-              <%= link_to recipe_path(recipe) do %>
-                <%= recipe.title %>
-              <% end %> 
-           </h6>
+          <div class="col-md-3 mb-4">
+            <div class="card-wrapper">
+               <div class="row g-0">
+                 <div class="col-md-4">
+                   <%= link_to recipe_path(recipe) do %>
+                     <%= image_tag recipe.get_photo(100, 100), class: "card-img"; %>
+                   <% end %>
+                </div>
+                <div class="col-md-8">
+            
+                  <p>
+                    <%= "[#{recipe.tag.name}]" %>
+                    <%= link_to recipe_path(recipe) do %>
+                      <%= recipe.title %>
+                    <% end %>
+                  </p>
+                  <p>
+                    投稿者：
+                      <%= link_to end_user_path(recipe.end_user) do %>
+                        <%= recipe.end_user.nickname %>さん
+                      <% end %>
+                      <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
+                  </p>
+                  <p>レシピ名：<br>
+                    <%= link_to recipe_path(recipe) do %>
+                      <%= recipe.title %>
+                    <% end %> 
+                  </p>
+                  <p>所要時間：<%= recipe.cooking_time.time_in_minuites %></p>
+            
+                </div>
+              </div>
+      
+            </div> 
+       
          </div>
-         <div class="row">
-           <h6>
-             投稿者：
-             <%= link_to end_user_path(recipe.end_user) do%>
-               <%= recipe.end_user.nickname %>
-             <% end %>
-           </h6>
-         </div>
-         <div class="row mt-3" >
-           <div class="col-4 offset-1">
-             <%= link_to recipe_path(recipe) do %>
-               <%= image_tag recipe.get_photo(150,150) %>
-             <% end %>   
-           </div>
-           <div class="col-6 offset-1">
-             <div class="row">
-               <h6>レシピ紹介：<%= recipe.description %></h6>
-             </div>
-             <div class="row">
-               <h6>所要時間：<%= recipe.cooking_time.time_in_minuites %></h6>
-             </div>
-           </div>
-          </div>
-  
         <% end %>
+      </div>
+
+       
+             
       
       <div class="d-flex justify-content-center">
-        <!--<!%= paginate @liked_recipes, theme: 'bootstrap-5' %>-->
+        <%= paginate @liked_recipes %>
       </div>
     </div>
   </div>
