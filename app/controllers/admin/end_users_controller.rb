@@ -1,6 +1,6 @@
 class Admin::EndUsersController < ApplicationController
   def index
-    @end_users = EndUser.includes(:recipes).page(params[:page]).per(8)
+    @end_users = EndUser.includes(:recipes).page(params[:page]).per(10)
   end
 
   def show
