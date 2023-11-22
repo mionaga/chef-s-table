@@ -1,10 +1,12 @@
 class Admin::IngredientsController < ApplicationController
   def index
-    @ingredients = Ingredient.all
+    @ingredients = Ingredient.page(params[page]).per(4)
   end
 
   def new
+  
     @ingredient = Ingredient.new
+    
   end
 
   def create
@@ -34,7 +36,7 @@ class Admin::IngredientsController < ApplicationController
   private
 
   def ingredient_params
-    params.require(:ingredient).permit(:name, :description, :image, :category_id)
+    params.require(:ingredient).permit(:name, :description, :image, :category_id, :seasonal_info)
   end
 
 end

@@ -1,14 +1,31 @@
 
   <div class="row">
-    <div class="col"><%= @ingredient.name %></div>
-  </div>
-  <div class="row">
     <div class="col-4 offset-1">
       <%= image_tag @ingredient.get_image(300, 300) %>
     </div>
-    <div class="col-7">
-      <%= @ingredient.description %>
-    </div>
+     <div class="col-6">
+       <div class="row">
+         <h2 class="heading-title">
+           <%= @ingredient.name %>の基本情報
+         </h2>
+       </div>
+       <div class="row">
+         <strong>
+           <p>◼️旬の時期・おすすめの季節：
+            <%= @ingredient.seasonal_info %>
+         </p>
+         </strong>
+       </div>
+       <div class="row">
+          <strong>
+            <p>◼食材説明：️</p>
+          </strong><br>
+          <%= @ingredient.description %>
+       </div>
+    </div>  
   </div>
+
+    
+   
   
 

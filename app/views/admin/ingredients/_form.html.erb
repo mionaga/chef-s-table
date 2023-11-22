@@ -10,7 +10,10 @@
 <h5>食材カテゴリー</h5>
 <%= f.select :category_id, options_from_collection_for_select(Category.all, :id, :name, f.object.category_id), include_blank: true %>
 
-<h5>食材説明</h5>
-<%= f.text_area :description %>
+<h5>️旬・おすすめの時期</h5>
+<%= f.text_field :seasonal_info %>
 
-<%= f.submit '更新' %>
+<h5>食材説明</h5>
+<%= f.text_area :description, size: "100*200" %>
+
+<%= f.submit '送信' %>

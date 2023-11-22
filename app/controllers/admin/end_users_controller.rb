@@ -1,11 +1,11 @@
 class Admin::EndUsersController < ApplicationController
   def index
-    @end_users = EndUser.all
+    @end_users = EndUser.includes(:recipes).page(params[:page]).per(10)
   end
 
   def show
     @end_user = EndUser.find(params[:id])
-    @recipes = @end_user.recipes
+    @recipes = @end_user.recipes.page(params[:page]).per(3)
   end
 
   def edit
