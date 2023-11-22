@@ -18,8 +18,9 @@
             <div class="album bg-light">
               <div class="container">
                 <div class="row">
+                  <% ingredients = Kaminari.paginate_array(category.ingredients).page(params[:page]).per(4) %>
 
-                  <% category.ingredients.each do |ingredient| %>
+                  <% ingredients.each do |ingredient| %>
 
                     <div class="col-md-3">
                       <div class="card custom-card mb-4">
@@ -41,14 +42,15 @@
 
                       </div>
                       </div>
+                        
                     </div>
+                    
                   <% end %>
-                  <% if @ingredients %>
-                    <div class="row justify-content-endr">
+                
+                 </div>
+                 <div class="row justify-content-end">
                       <%= paginate ingredients %>
                     </div>
-                  <% end %>
-                 </div>
                 </div>
               </div>
 

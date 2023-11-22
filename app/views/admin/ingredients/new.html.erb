@@ -1,3 +1,8 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert">
+  <p class="notice text-center" style="color:blue;"><%= flash[:alert] %></p></div>
+<% end %>
+
 <div class="container">
   <div class="row" style="margin-top: 20px;" >
     <div class="col-6">
@@ -7,7 +12,7 @@
   <div class="row">
 
     <%= form_with model: @ingredient, url: admin_ingredients_path, method: :post, local: true do |f| %>
-     <%= render 'form', f: f %>
+     <%= render 'admin/ingredients/form', f: f %>
    <% end %>
 
   </div>

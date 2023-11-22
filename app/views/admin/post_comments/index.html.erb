@@ -9,7 +9,11 @@
   </tr>
 <% @post_comments.each do |post_comment| %>
   <tr>
-    <td class="col-2"><%= @end_users.find(post_comment.end_user_id).nickname %></td>
+    <td class="col-2">
+      <%= link_to admin_end_user_path(post_comment.end_user_id) do %>
+        <%= @end_users.find(post_comment.end_user_id).nickname %>
+      <% end %>
+    </td>
     <td class="col-8"><%= post_comment.comment %></td>
     <td class="col-1"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
     <td class="col-1">
@@ -18,5 +22,7 @@
   </tr>
 <% end %>
 </table>
-
+<div class="row justify-content-center">
+  <%= paginate @post_comments %>
+</div>
 </div>

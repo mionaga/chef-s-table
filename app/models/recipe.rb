@@ -6,18 +6,17 @@ class Recipe < ApplicationRecord
 
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
- 
+
   belongs_to :tag
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
   # reject_if: :all_blank　不要なカラレコードの生成を防ぐ
   # allow_destroy: trueは関連するこれコードを簡単に削除できるようにする
   has_many :recipe_ingredients, dependent: :destroy
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
-  has_many :categories, through: :recipe_ingredients, dependent: :destroy
 
   has_many :steps, dependent: :destroy
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
-  
+
   validates :title, presence: true
   validates :description, presence: true
   validates :tag, presence:true
@@ -44,7 +43,7 @@ class Recipe < ApplicationRecord
        .page(page)
        .per(per_page)
    end
-   
+
    def self.looks(search, word)
     if search == 'parfect'
       recipes = Recipe.where("title Like?", "#{word}")

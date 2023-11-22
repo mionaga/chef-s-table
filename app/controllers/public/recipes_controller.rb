@@ -19,12 +19,15 @@ class Public::RecipesController < ApplicationController
  def create
    @recipe = Recipe.new(recipe_params)
    @recipe.end_user_id = current_end_user.id
-   if @recipe.save == false
-     flash.now[:alert] = '投稿に失敗しました。必須項目を入力してください'
-     render :new
-     return
+   if @recipe.save
+     redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
+   else
+
+     flash[:alert] = @recipe.errors.full_messages
+      redirect_to new_recipe_path
+
    end
-   redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
+
  end
 
 
@@ -44,7 +47,7 @@ class Public::RecipesController < ApplicationController
       flash.now[:alert] = 'レシピの更新に失敗しました。必須項目を入力してください'
       render :edit
       return
-    end  
+    end
     redirect_to @recipe, notice: 'レシピの更新に成功しました'
   end
 
