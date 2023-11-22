@@ -43,6 +43,11 @@
                       </div>
                     </div>
                   <% end %>
+                  <% if @ingredients %>
+                    <div class="row justify-content-endr">
+                      <%= paginate ingredients %>
+                    </div>
+                  <% end %>
                  </div>
                 </div>
               </div>
