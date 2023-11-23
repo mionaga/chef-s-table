@@ -2,7 +2,7 @@ class Ingredient < ApplicationRecord
   belongs_to :category
   has_one_attached :image
   
-  validates :name, uniqueness: true
+  validates :name, presence: true
   validates :description, :seasonal_info, presence: true
   
   def get_image(width, height)

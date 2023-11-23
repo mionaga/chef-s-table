@@ -37,7 +37,7 @@
             <%= link_to "編集", edit_admin_category_path(category.id) %>
           </td>
           <td>
-            <%= link_to "削除", admin_categories_path(category.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            <%= link_to "削除", admin_category_path(category.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
           </td>
         </tr>
         <% end %>

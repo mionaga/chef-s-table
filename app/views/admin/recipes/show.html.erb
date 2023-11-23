@@ -1,11 +1,9 @@
 
 <div class="row justify-content-center" style="margin-top: 20px;">
-    <div class="col-auto">
-      <%= link_to 'レシピ編集', edit_admin_recipe_path(@recipe), data: {"turbolinks" => false}, class:"btn btn-outline-warning", style: "width: 200px;" %>
-    </div>
-    <div class="col-auto">
-      <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn btn btn-outline-danger", style: "width: 200px;" %>
-    </div>
+  
+<div class="col-auto">
+  <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn btn btn-outline-danger", style: "width: 200px;" %>
+</div>
 </div>
 <div class="container">
   <%= render 'public/recipes/show', recipe: @recipe, admin: true %>
