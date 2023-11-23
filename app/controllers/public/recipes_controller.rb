@@ -19,6 +19,7 @@ class Public::RecipesController < ApplicationController
  def create
    @recipe = Recipe.new(recipe_params)
    @recipe.end_user_id = current_end_user.id
+  # byebug
    if @recipe.save
      redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
    else

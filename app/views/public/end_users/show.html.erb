@@ -54,7 +54,7 @@
 
     </div>
   <div class="col-md-5 text-center">
-    <%= render 'recipes', end_user: @end_user, recipes: @recipes, admin:false %> 
+    <%= render 'recipes', end_user: @end_user, recipes: @recipes, recipe_count: @recipe_count, admin:false %> 
   <div class="row justify-content-center">
       <%= paginate @recipes %>
   </div>
