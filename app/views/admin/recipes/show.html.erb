@@ -7,5 +7,28 @@
       <%= link_to 'レシピ削除', recipe_path(@recipe), method: :delete, data:{confirm: '本当に削除しますか？'}, class:"btn btn btn-outline-danger", style: "width: 200px;" %>
     </div>
 </div>
+<div class="container">
+  <%= render 'public/recipes/show', recipe: @recipe, admin: true %>
 
-<%= render 'public/recipes/show', recipe: @recipe, admin: true %>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-7 offset-1">
+
+
+        <div>
+          <p>
+            いいねの数：<%= "#{@recipe.favorites.count}" %> 
+          </p>
+        </div>
+        <div>
+          <p>コメント件数：<span id="comment_count"><%= @recipe.post_comments.count %></span>件</p>
+            <div id="post_comments">
+              <%= render 'public/post_comments/show', {recipe: @recipe} %>
+            </div>
+        </div>
+
+        </div>
+      </div>
+
+</div>
+
+

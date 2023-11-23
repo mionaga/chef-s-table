@@ -18,7 +18,7 @@
              %>
           <% end %>
         </div>
-        
+
         <div class="col-md-3">
            <%= form_tag recipes_path, method: :get, class: 'boards_searchForm' do %>
              <%= select_tag :cooking_time_id,
@@ -56,20 +56,33 @@
                          <% end %>
                        <% end %>
                      </p>
-                     
+
                       <P class="card-end_user">
-                        投稿者：
+                        <% if current_admin %>
+                          投稿者：
+                          <%= link_to admin_end_user_path(recipe.end_user) do %>
+                            <%= recipe.end_user.nickname %>さん
+                          <% end %>
+                        <% else %>
                           <%= link_to end_user_path(recipe.end_user) do %>
                             <%= recipe.end_user.nickname %>さん
                           <% end %>
-                          <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
+                        <% end %>
+                        <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
                       </P>
-                      <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
-                      <div id="recipe_favorite_<%= recipe.id %>">
-                        <%= render 'public/favorites/favorite', recipe: recipe %>
-                      </div>
-                  
-                      
+                      <p>
+                         <% if current_admin %>
+                           <%= link_to "#{recipe.post_comments.count} コメント", admin_recipe_path(recipe.id) %>
+                         <% else %>
+                           <%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %>
+                         <% end %>
+                      </p>
+                      <% unless current_admin %>
+                        <div id="recipe_favorite_<%= recipe.id %>">
+                          <%= render 'public/favorites/favorite', recipe: recipe %>
+                        </div>
+                      <% end %>
+
                    </div>
 
                   </div>
