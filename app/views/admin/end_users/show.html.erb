@@ -70,43 +70,10 @@
 
     </div>
  <div class="col-md-5 text-center">
-  <div class="row justify-content-center" style="color: green; font-size: 25px;">
-    <% if @end_user.recipes.present? %>
-      <%= @recipes.count %>件の投稿があります
-    <% else %>
-      投稿はまだありません
-    <% end %>
-  </div>
-  <div class="row">
-    <% @recipes.each do |recipe| %>
-      <div class="col-md-12 mb-4">
-        <div class="card custom-card shadow-lg">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <%= link_to recipe_path(recipe) do %>
-                <%= image_tag recipe.get_photo(100, 100), class: "card-img"; %>
-              <% end %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= recipe.title %>
-                  <% end %>
-                </h5>
-
-                <p><%= "#{recipe.favorites.count}" %> 個のいいね</p>
-                <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
+   <%= render 'public/end_users/recipes', end_user: @end_user, recipes: @recipes, admin: true %>
+   <div class="row justify-content-center">
       <%= paginate @recipes %>
-  </div>
+   </div>
 
 
 </div>

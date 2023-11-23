@@ -1,0 +1,52 @@
+<div class="row justify-content-center" style="color: green; font-size: 25px;">
+    <% if end_user.recipes.present? %>
+      <%= recipes.count %>件の投稿があります
+    <% else %>
+      投稿はまだありません
+    <% end %>
+  </div>
+  <div class="row">
+    <% recipes.each do |recipe| %>
+      <div class="col-md-12 mb-4">
+        <div class="card custom-card shadow-lg">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <% if admin.present? %>
+                <%= link_to admin_recipe_path(recipe) do %>
+                  <%= image_tag recipe.get_photo(100, 100), class: "card-img"; %>
+                <% end %>
+              <% else%>
+                <%= link_to recipe_path(recipe) do %>
+                  <%= image_tag recipe.get_photo(100, 100), class: "card-img"; %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <% if admin.present? %>
+                    <%= link_to admin_recipe_path(recipe) do %>
+                      <%= recipe.title %>
+                    <% end %>
+                  <% else%>
+                    <%= link_to recipe_path(recipe) do %>
+                      <%= rcipe.title %>
+                    <% end %>
+                  <% end %>
+                </h5>
+                <p class="card-text">
+                 <%= "#{recipe.favorites.count}" %> 個のいいね</p>
+                <p>
+                  <% if admin.present? %>
+                    <%= link_to "#{recipe.post_comments.count} コメント", admin_recipe_path(recipe.id) %>
+                  <% else %>
+                    <%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
