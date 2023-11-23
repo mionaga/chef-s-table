@@ -10,8 +10,8 @@ class Admin::IngredientsController < ApplicationController
   def create
     @ingredient = Ingredient.new(ingredient_params)
     if @ingredient.save == false
-      flash.now[:alert] = "投稿に失敗しました。必須項目を入力してください"
-      render new
+      flash[:alert] = "投稿に失敗しました。必須項目を入力してください"
+      redirect_to new_admin_ingredient_path
       return
     end  
     redirect_to admin_ingredient_path(@ingredient), notice: "投稿しました"
@@ -28,8 +28,8 @@ class Admin::IngredientsController < ApplicationController
   def update
     @ingredient = Ingredient.find(params[:id])
     if @ingredient.update(ingredient_params) == false
-      flash.now[:alert] = "更新に失敗しました。必須項目を入力してください"
-      render edit
+      flash[:alert] = "更新に失敗しました。必須項目を入力してください"
+      redirect_to edit_admin_ingredient_path(@ingredient)
       return
     end  
     redirect_to admin_ingredient_path(@ingredient), notice: "更新に成功しました"
