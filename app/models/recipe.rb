@@ -3,26 +3,24 @@ class Recipe < ApplicationRecord
   belongs_to :end_user
   belongs_to :cooking_time
   has_one_attached :photo
-
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
+  has_many :recipe_ingredients, dependent: :destroy
+  has_many :steps, dependent: :destroy
   belongs_to :tag
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
   # reject_if: :all_blank　不要なカラレコードの生成を防ぐ
   # allow_destroy: trueは関連するこれコードを簡単に削除できるようにする
-  has_many :recipe_ingredients, dependent: :destroy
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
   validates_associated :recipe_ingredients
   validates_associated :steps
-  has_many :steps, dependent: :destroy
-  
-
-  accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
-  validates :recipe_ingredients, presence: true
-  validates :steps, presence: true
   validates :title, presence: true
   validates :description, presence: true
+  validates :recipe_ingredients, presence: true
+  validates :steps, presence: true
+
+
   #
   # validates_associated :cooking_time
   # validates :tag, presence: true
