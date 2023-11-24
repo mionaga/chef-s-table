@@ -1,12 +1,12 @@
-<div class="containe-fluid">
+<div class="container-m">
   <div class="row">
-        <div class="col-md-6 text-center">
+        <div class="col-md-5 text-center">
 
           <div class="row" style="margin-left: 15px;">
-            <div class="col">
+            <div class="col-9">
                <h4 class="heading-title"><%= "#{@end_user.family_name} #{@end_user.first_name}(#{@end_user.nickname})" %>さんのページ</h4>
             </div>
-            <div class="col">
+            <div class="col-3">
               <%= link_to "編集画面へ", edit_admin_end_user_path(@end_user), class: "btn", style: "margin-top: 6px; background-color: #3e687d; color: #ffffff" %>
             </div>
           </div>
@@ -69,49 +69,18 @@
       </div>
 
     </div>
-  <div class="col-md-5 text-center">
-  <div class="row">
-    <% @recipes.each do |recipe| %>
-      <div class="col-md-12 mb-4">
-        <div class="card custom-card shadow-lg">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <%= link_to recipe_path(recipe) do %>
-                <%= image_tag recipe.get_photo(50, 50), class: "card-img"; %>
-              <% end %>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= recipe.title %>
-                  <% end %>
-                </h5>
-                <p class="card-text">
-                  タイトル：<br>
-                  <%= link_to recipe_path(recipe.id) do %>
-                    <%= recipe.title %>
-                  <% end %>
-                </p>
-                <p><%= "#{recipe.favorites.count}" %> 個のいいね</p>
-                <p><%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %></p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
+ <div class="col-md-5 text-center">
+   <%= render 'public/end_users/recipes', end_user: @end_user, recipes: @recipes, admin: true %>
+   <div class="row justify-content-center">
       <%= paginate @recipes %>
-  </div>
+   </div>
 
 
 </div>
-  
 
-  
-    </div>
-  </div>
+
+
+ </div>
+</div>
 
 

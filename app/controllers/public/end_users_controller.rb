@@ -6,6 +6,7 @@ class Public::EndUsersController < ApplicationController
   def show
     @end_user = EndUser.find(params[:id])
     hide_sensitive_information unless current_end_user == @end_user
+    @recipe_count = @end_user.recipes.count
     @recipes = @end_user.recipes.page(params[:page]).per(3)
   end
 

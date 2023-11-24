@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Admin.create!(
    email: 'admin@admin',
-   password: 'testtest'
+   encrypted_password: 'testtest'
 )
 
 5.times do |i|
-  EndUser.create(
+  EndUser.find_or_create_by!(
     family_name: "山田#{i + 1}",
     first_name: "はな",
     nickname: "dish#{i+1}",
@@ -24,7 +24,7 @@ Admin.create!(
 end
 
 5.times do |i|
-  EndUser.create(
+  EndUser.find_or_create_by!(
     family_name: "川田#{i + 1}",
     first_name: "太郎",
     nickname: "plate#{i+1}",
@@ -47,8 +47,8 @@ Tag.create!([
     { name: 'エスニック'},
     { name: 'その他'}
     ])
-    
-    
+
+
 Category.create!([
   { name: '野菜' },
   { name: 'キノコ類' },
@@ -58,14 +58,14 @@ Category.create!([
   { name: 'パスタ' },
   { name: '麺類' },
   { name: '乳製品' }
-  ]) 
-  
+  ])
+
 
 CookingTime.create!([
-  { time_in_minuites: '15分以内' },
-  { time_in_minuites: '30分以内' },
-  { time_in_minuites: '45分以内' },
-  { time_in_minuites: '60分以内' },
-  { time_in_minuites: '90分以内' },
+  { time_in_minuites: '15分' },
+  { time_in_minuites: '30分' },
+  { time_in_minuites: '45分' },
+  { time_in_minuites: '60分' },
+  { time_in_minuites: '90分' },
   { time_in_minuites: '90分以上' },
-  ])  
+  ])

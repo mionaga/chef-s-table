@@ -4,7 +4,7 @@
       <div class="row-justify-content-center">
         <h4 class="heading-title"><%= "#{current_end_user.nickname}さんがいいねした投稿" %></h4>
       </div>
-      
+
       <div class="row">
         <% @liked_recipes.each do |recipe| %>
           <div class="col-md-3 mb-4">
@@ -16,9 +16,9 @@
                    <% end %>
                 </div>
                 <div class="col-md-8">
-            
+
                   <p>
-                    <%= "[#{recipe.tag.name}]" %>
+                    <%= "[#{recipe.tag.name}]" %><br>
                     <%= link_to recipe_path(recipe) do %>
                       <%= recipe.title %>
                     <% end %>
@@ -33,23 +33,23 @@
                   <p>レシピ名：<br>
                     <%= link_to recipe_path(recipe) do %>
                       <%= recipe.title %>
-                    <% end %> 
+                    <% end %>
                   </p>
                   <p>所要時間：<br>
                   <%= recipe.cooking_time.time_in_minuites %></p>
-            
+
                 </div>
               </div>
-      
-            </div> 
-       
+
+            </div>
+
          </div>
         <% end %>
       </div>
 
-       
-             
-      
+
+
+
       <div class="d-flex justify-content-center">
         <%= paginate @liked_recipes %>
       </div>

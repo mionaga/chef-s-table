@@ -9,12 +9,7 @@
       <%= f.text_field :name, placeholder: "材料名（必須）", class: 'form-control light-placeholder' %>
     </div>
   </div>
-  <!--<div class="col">-->
-    <!--<div class="form-group">-->
-      <!--<!%= f.label :"[カテゴリー]" %>-->
-      <!--<!%= f.collection_select :category_id, Category.all, :id, :name, include_blank: "選択して下さい" %>-->
-  <!--</div>-->
-  <!--</div>-->
+
   <div class="col">
     <div class="form-group">
       <%= f.label :"[分量]" %>
@@ -23,7 +18,7 @@
   </div>
   <div class="col">
     <div class="form-group">
-      <div></div>
+      <div><br></div>
       <button type="button" class="btn btn-danger remove-recipe_ingredient">
         <i class="fas fa-trash-alt"></i>
       </button>
