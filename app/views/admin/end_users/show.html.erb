@@ -70,7 +70,7 @@
 
     </div>
  <div class="col-md-5 text-center">
-   <%= render 'public/end_users/recipes', end_user: @end_user, recipes: @recipes, admin: true %>
+   <%= render 'public/end_users/recipes', end_user: @end_user, recipes: @recipes, recipe_count: @recipe_count, admin: true %>
    <div class="row justify-content-center">
       <%= paginate @recipes %>
    </div>
