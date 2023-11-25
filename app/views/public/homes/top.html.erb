@@ -48,7 +48,7 @@
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= recipe.title %></h5>
-            <p class="card-text"><small class="text-muted">Last updated <%= time_ago_in_words(recipe.created_at) %> ago</small></p>
+            <p class="card-text"><small class="text-muted">最終更新 <%= time_ago_in_words(recipe.created_at) %> 前</small></p>
               <div>
                 <%= link_to '詳細ページへ', recipe_path(recipe.id), class: 'card-btn btn btn-outline-danger btn-sm pl-3' %>
               </div>
