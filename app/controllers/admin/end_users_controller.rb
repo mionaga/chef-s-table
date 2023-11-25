@@ -5,6 +5,7 @@ class Admin::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
+    @recipe_count = @end_user.recipes.count
     @recipes = @end_user.recipes.page(params[:page]).per(3)
   end
 
