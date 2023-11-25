@@ -154,6 +154,13 @@ h4.heading-title{
   height: 40%;
 }
 
+.col-img-top{
+  width: 100%;
+  height: 500px;
+  background-image: image-url('cooks-1661136_1280.jpg');
+  background-size: cover;
+}
+
 .col-text{
   background-color: #dddddd;
   border: 1px solid #000;
@@ -171,9 +178,9 @@ h4.heading-title{
 }
 
 
-.col-img{
+.col-img-about{
   width: 100%;
   height: 400px;
-  background-image: url('/assets/vegetables-2357173_1280.jpg');
+  background-image: image-url('vegetables-2357173_1280.jpg');
   background-size: cover;
 }
