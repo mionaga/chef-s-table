@@ -1,4 +1,5 @@
 class Public::RecipesController < ApplicationController
+  before_action :authorize_end_user, only: [:edit, :update]
 
   def index
     @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
@@ -62,5 +63,13 @@ class Public::RecipesController < ApplicationController
       recipe_ingredients_attributes: [:id, :name, :quantity, :_destroy, :category_id],
       steps_attributes: [:id,:ingredients, :description, :_destroy]
       )
+  end
+  
+  def authorize_end_user
+    @recipe = Recipe.find(params[:id])
+    unless @recipe.end_user == current_end_user
+      flash[:alert] = '他のユーザーのレシピは編集できません。'
+      redirect_to recipes_path
+    end
   end
 end

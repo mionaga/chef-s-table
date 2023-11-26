@@ -64,6 +64,7 @@
                             <%= recipe.end_user.nickname %>さん
                           <% end %>
                         <% else %>
+                          投稿者：
                           <%= link_to end_user_path(recipe.end_user) do %>
                             <%= recipe.end_user.nickname %>さん
                           <% end %>

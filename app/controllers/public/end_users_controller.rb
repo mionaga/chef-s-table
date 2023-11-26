@@ -1,7 +1,7 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
   before_action :ensure_guest_user, only: [:edit]
-  
+  before_action :is_matching_login_end_user, only: [:edit, :update]
   
   def show
     @end_user = EndUser.find(params[:id])
@@ -66,5 +66,12 @@ class Public::EndUsersController < ApplicationController
     if @end_user.guest_user?
       redirect_to end_user_path(current_end_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
-  end  
+  end 
+  
+  def is_matching_login_end_user
+    end_user = EndUser.find(params[:id])
+    unless end_user.id == current_end_user.id
+      redirect_to recipes_path
+    end
+  end
 end

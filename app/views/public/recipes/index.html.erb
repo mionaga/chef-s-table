@@ -1,3 +1,9 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert">
+  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
+<% end %>
+
+
 <%= render 'public/recipes/index', recipes: @recipes %>
 <div class="row justify-content-center">
   <%= paginate @recipes %>
