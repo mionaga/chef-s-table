@@ -23,8 +23,7 @@ class Public::RecipesController < ApplicationController
    if @recipe.save
      redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
    else
-     flash[:alert] = @recipe.errors.full_messages
-     redirect_to new_recipe_path
+     render :new
    end
  end
 
@@ -64,7 +63,7 @@ class Public::RecipesController < ApplicationController
       steps_attributes: [:id,:ingredients, :description, :_destroy]
       )
   end
-  
+
   def authorize_end_user
     @recipe = Recipe.find(params[:id])
     unless @recipe.end_user == current_end_user

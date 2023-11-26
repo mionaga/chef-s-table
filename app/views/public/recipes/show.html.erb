@@ -5,34 +5,30 @@
 
 <div class="container">
   <%= render 'show', recipe: @recipe, admin: false %>
-        
-　<div class="row" style="margin-top: 20px;">
-    <div class="col-7 offset-1"> 
-        
 
-        <div>
-          <div id="recipe_favorite_<%= @recipe.id %>">
-            <%= render 'public/favorites/favorite', recipe: @recipe %>
-          </div>
-          
-          <p>コメント件数：<span id="comment_count"><%= @recipe.post_comments.count %></span>件</p>
-            <div id="post_comments">
-              <%= render 'public/post_comments/show', {recipe: @recipe} %>
-            </div>
+  <div class="row" style="margin-top: 20px;">
+    <div class="col-7 offset-1">
+      <div>
+        <div id="recipe_favorite_<%= @recipe.id %>">
+          <%= render 'public/favorites/favorite', recipe: @recipe %>
         </div>
-      
+      </div>
     </div>
   </div>
-  
-    
-    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
-      <div class="col-7 offset-1">
-        
-           <div id="comment-form">
-             <%= render 'public/post_comments/form', {recipe: @recipe, post_comment: @post_comment} %>
-           </div>
-        
-     </div>
-  </div>
+  <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="col-7 offset-1">
+      <div>コメント件数：
+        <span id="comment_count"><%= @recipe.post_comments.count %></span>件（
+          <%= link_to recipe_post_comments_path(@recipe), data: { "turbolinks" => false } do %>
+            <i class="fa-regular fa-comments"></i>コメントを全て見る
+          <% end %>）
+      </div>
+      <div class="comment-link">
+        <%= link_to recipe_post_comments_path(@recipe), style: "color: white;", data: { "turbolinks" => false } do %>
+          <i class="fa-regular fa-pen-to-square"></i>コメントフォームはこちら
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+

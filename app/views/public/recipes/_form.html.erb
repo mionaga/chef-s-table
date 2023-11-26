@@ -9,7 +9,7 @@
           </div>
           <label class="img-file">
             <%= f.file_field :photo, accept: "image/*" %>
-            <% if recipe.photo.attached? %>
+            <% if !recipe.new_record? && recipe.photo.attached? %>
               <%= image_tag recipe.get_photo(200,200) %>
             <% end %>
           </label>
@@ -94,8 +94,8 @@
       // add-recipe_ingredient IDを持つHTML要素のボタンを取得、「材料追加」ボタンにクリックイベントを追加
       document.getElementById("add-recipe_ingredient").addEventListener("click", function() {
         // recipe_ingredient_fields-templateというIDを持つdiv要素の内部HTMLを取得
-        var content = document.getElementById("recipe_ingredient_fields-template").innerHTML;
-        var uniqueId = new Date().getTime();
+        let content = document.getElementById("recipe_ingredient_fields-template").innerHTML;
+        const uniqueId = new Date().getTime();
         // replace:テンプレート内のプレースホルダーを一位なIDで置き換え
         content = content.replace(/new_recipe_ingredient/g, uniqueId);
         // 新しい材料フォームをDOMに追加
@@ -107,11 +107,11 @@
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#add-step').addEventListener('click', () => {
         let content = document.getElementById('step_fields-template').innerHTML;
-        let uniqueId = new Date().getTime();
+        const uniqueId = new Date().getTime();
         content = content.replace(/new_step/g, uniqueId);
         document.getElementById('steps').insertAdjacentHTML('beforeend', content);
       });
     });
 
     </script>
- <% end %>   
+ <% end %>
