@@ -154,6 +154,17 @@ h4.heading-title{
   height: 40%;
 }
 
+.logo-img{
+  width: 80px;
+  height: 80px;
+  background-image: image-url('logo.png');
+  background-size: cover;
+}
+
+.logo-text{
+  font-family: "Verdana", "Yu Gothic Medium", "游ゴシック Medium", "游ゴシック体", "ヒラノギ角ゴ", sans-serif;
+}
+
 .col-img-top{
   width: 100%;
   height: 500px;
