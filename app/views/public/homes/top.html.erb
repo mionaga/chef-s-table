@@ -43,12 +43,12 @@
           <div class="card">
             <% if recipe.photo.attached? %>
               <%= link_to recipe_path(recipe.id) do %>
-                <%= image_tag recipe.photo.variant(resize: "150x150"), class: "card-img-top" %>
+                <%= image_tag recipe.photo.variant(resize_to_fill: [150, 150]), class: "card-img-top" %>
               <% end %>
             <% end %>
             <div class="card-body">
               <h5 class="card-title"><%= recipe.title %></h5>
-            <p class="card-text"><small class="text-muted">最終更新 <%= time_ago_in_words(recipe.created_at) %> 前</small></p>
+            <p class="card-text"><small class="text-muted">最終更新時間:<%= time_ago_in_words(recipe.created_at) %> 前</small></p>
               <div>
                 <%= link_to '詳細ページへ', recipe_path(recipe.id), class: 'card-btn btn btn-outline-danger btn-sm pl-3' %>
               </div>
