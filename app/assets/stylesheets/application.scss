@@ -142,6 +142,17 @@ h4.heading-title{
   margin-top: 10px;
 }
 
+.comment-link{
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: #6289a4;
+  color: white;
+  display: inline-block; 
+  text-decoration: none; 
+  border-radius: 5px; 
+}
+
 .container-about{
   width: 80%;
   height: 80vh; /* ビューポートの高さの80%に設定 */

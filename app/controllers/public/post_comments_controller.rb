@@ -1,4 +1,10 @@
 class Public::PostCommentsController < ApplicationController
+  
+  def index
+    @recipe = Recipe.find(params[:recipe_id])
+    @post_comments = @recipe.post_comments
+    @post_comment = PostComment.new
+  end
 
   def create
     @recipe = Recipe.find(params[:recipe_id])

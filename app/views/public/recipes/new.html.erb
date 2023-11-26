@@ -1,7 +1,11 @@
-<% if flash[:alert] %>
+<% if @recipe.errors.any? %>
   <div class="alert alert-danger" role="alert">
-  <p class="notice text-center" style="color:red;"><%= flash[:alert] %></p></div>
+    <li class="notice text-center" style="color:red;">
+      投稿に失敗しました。<%= @recipe.errors.full_messages.join(', ') %>
+    </li>
+  </div>
 <% end %>
+
 
 <div class="container mt-6">
   <div class="row justify-content-center" style="margin-top: 30px;">

@@ -48,7 +48,7 @@
                             <%= image_tag recipe.get_photo(200, 200),class:"card-img-top"; %>
                           <% end %>
                         <% end %>
-       
+
                    <div class="card-body">
 
                      <p class="card-title">
@@ -82,7 +82,7 @@
                          <% if current_admin %>
                            <%= link_to "#{recipe.post_comments.count} コメント", admin_recipe_path(recipe.id) %>
                          <% else %>
-                           <%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %>
+                           <%= link_to "#{recipe.post_comments.count} コメント", recipe_post_comments_path(recipe.id) %>
                          <% end %>
                       </p>
                       <% unless current_admin %>
