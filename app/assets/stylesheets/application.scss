@@ -25,18 +25,18 @@
 /*ページネーション自体のデザイン*/
 .pagination>li>a {
   border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+  color: #696969; 
 }
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {
   background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+  border-radius: 15px;     
 }
 
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+  border-radius: 15px;  
 }
 
 body {
@@ -131,9 +131,9 @@ h4.heading-title{
 }
 
 .card-wrapper {
-  border: 1px solid #ddd; /* 枠線のスタイル */
-  padding: 10px; /* 枠線内の余白 */
-  border-radius: 8px; /* 枠線の角を丸くする場合 */
+  border: 1px solid #ddd; 
+  padding: 10px; 
+  border-radius: 8px; /* 枠線の角を丸くする */
 }
 
 .comment-box{
@@ -196,15 +196,20 @@ h4.heading-title{
 }
 
 .col-text-title {
-  text-align: center; /* title文を中央寄せにするスタイルを追加 */
+  text-align: center; 
+}
+
+.about-title{
+  font-family: "Verdana", "Yu Gothic Medium", "游ゴシック Medium", "游ゴシック体", "ヒラノギ角ゴ", sans-serif;
+  font-weight: bold;
 }
 
 .col-text-body {
-  text-align: left; /* body文を左寄せにするスタイルを追加 */
+  text-align: left; 
 }
 
 .col-text h4 {
-  margin-bottom: 10px; /* h4要素の下に余白を追加 */
+  margin-bottom: 10px; 
 }
 
 
@@ -235,6 +240,6 @@ h4.heading-title{
 }
 
 .top-text-container .top-title h4 {
-  font-size: 1.5em; /* 例として調整 */
-  font-weight: bold; /* 例として太さを調整 */
+  font-size: 1.5em; 
+  font-weight: bold; 
 }
