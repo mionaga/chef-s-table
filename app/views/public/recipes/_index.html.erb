@@ -36,7 +36,7 @@
         <div class ="col-md-12">
           <div class="row">
 
-             <% recipes.each do |recipe| %>
+             <% recipes.order(created_at: :desc).each do |recipe| %>
                 <div class="col-md-4">
                    <div class="card custom-card mb-4 shadow-lg">
                      <% if current_admin %>
@@ -62,6 +62,10 @@
                            <%= recipe.title %>
                          <% end %>
                        <% end %>
+                     </p>
+
+                     <p>
+                       所要時間：<%= recipe.cooking_time.time_in_minuites %>
                      </p>
 
                       <P class="card-end_user">
