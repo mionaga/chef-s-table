@@ -30,4 +30,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- Pixabay使用検討
+- Pixabay
