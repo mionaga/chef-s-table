@@ -20,7 +20,7 @@
 - プロの料理人から一般のユーザーまでが食材とレシピを通じてコミュニケーションできる場所として
 ​
 ## 設計書
--　テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
+- テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
 
 ​
 ## 開発環境
@@ -31,4 +31,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- Pixabay
+- フリー画像としてPixabayを使用
