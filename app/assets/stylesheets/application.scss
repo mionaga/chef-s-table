@@ -148,9 +148,9 @@ h4.heading-title{
   margin-top: 10px;
   background-color: #6289a4;
   color: white;
-  display: inline-block; 
-  text-decoration: none; 
-  border-radius: 5px; 
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
 .container-about{
@@ -191,8 +191,16 @@ h4.heading-title{
   display: flex; /* Flexboxを使用して子要素を中央寄せにする */
   flex-direction: column; /* 子要素を縦に配置 */
   justify-content: center; /* 子要素を垂直方向に中央寄せ */
-  align-items: center; /* 子要素を水平方向に中央寄せ */
+  align-items: center; /* 子要素を水平方向に左寄せ */
   padding: 20px; /* 適切な余白を追加 */
+}
+
+.col-text-title {
+  text-align: center; /* title文を中央寄せにするスタイルを追加 */
+}
+
+.col-text-body {
+  text-align: left; /* body文を左寄せにするスタイルを追加 */
 }
 
 .col-text h4 {
@@ -205,4 +213,28 @@ h4.heading-title{
   height: 400px;
   background-image: image-url('vegetables-2357173_1280.jpg');
   background-size: cover;
+}
+
+.top-text-container {
+  border: 1px solid #000;
+  background-color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.top-text-container .top-title {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
+
+.top-text-container .top-body {
+  text-align: center;
+  line-height: 1.6;
+  margin-left: 20px;
+}
+
+.top-text-container .top-title h4 {
+  font-size: 1.5em; /* 例として調整 */
+  font-weight: bold; /* 例として太さを調整 */
 }

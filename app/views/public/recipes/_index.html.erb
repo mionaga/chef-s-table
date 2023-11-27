@@ -36,7 +36,7 @@
         <div class ="col-md-12">
           <div class="row">
 
-             <% recipes.order(created_at: :desc).each do |recipe| %>
+             <% recipes.each do |recipe| %>
                 <div class="col-md-4">
                    <div class="card custom-card mb-4 shadow-lg">
                      <% if current_admin %>

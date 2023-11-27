@@ -2,13 +2,14 @@ class Public::RecipesController < ApplicationController
   before_action :authorize_end_user, only: [:edit, :update]
 
   def index
-    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag)
+                     .order(created_at: :desc)
     if params[:tag_id].present?
       @recipes = @recipes.where(tag_id: params[:tag_id])
     elsif params[:cooking_time_id].present?
       @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])
     end
-    @recipes = @recipes.page(params[:page]).per(6)
+    @recipes = @recipes.page(params[:page]).per(9)
   end
 
   def new
