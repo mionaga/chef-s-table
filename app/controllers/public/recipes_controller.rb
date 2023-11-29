@@ -2,13 +2,14 @@ class Public::RecipesController < ApplicationController
   before_action :authorize_end_user, only: [:edit, :update]
 
   def index
-    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag)
+                     .order(created_at: :desc)
     if params[:tag_id].present?
       @recipes = @recipes.where(tag_id: params[:tag_id])
     elsif params[:cooking_time_id].present?
       @recipes = @recipes.where(cooking_time_id: params[:cooking_time_id])
     end
-    @recipes = @recipes.page(params[:page]).per(6)
+    @recipes = @recipes.page(params[:page]).per(9)
   end
 
   def new
@@ -23,6 +24,8 @@ class Public::RecipesController < ApplicationController
    if @recipe.save
      redirect_to recipe_path(@recipe), notice: '投稿に成功しました'
    else
+      @recipe.recipe_ingredients.build #画面で使うための空の食材オブ時ジェクト
+      @recipe.steps.build #画面で使うための空のstepsオブジェクト
      render :new
    end
  end
@@ -31,7 +34,8 @@ class Public::RecipesController < ApplicationController
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
-
+    #返信コメント作成
+    # @post_comment_reply = @recipe.post_comments.new
   end
 
   def edit
@@ -40,12 +44,11 @@ class Public::RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    if @recipe.update(recipe_params) == false
-      flash.now[:alert] = 'レシピの更新に失敗しました。必須項目を入力してください'
+    if @recipe.update(recipe_params)
+      redirect_to @recipe, notice: 'レシピの更新に成功しました'
+    else
       render :edit
-      return
     end
-    redirect_to @recipe, notice: 'レシピの更新に成功しました'
   end
 
   def destroy
