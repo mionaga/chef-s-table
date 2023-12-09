@@ -1,3 +1,3 @@
-$('#post_comments').html("<%= j(render "public/post_comments/show", recipe: @recipe) %>");
+$('#post_comments').html("<%= j(render "public/post_comments/show", recipe: @recipe, post_comment_reply: @post_comment_reply, post_comments: @post_comments) %>");
 $('#comment_count').html("<%= @recipe.post_comments.count %>")
 $("textarea").val('');

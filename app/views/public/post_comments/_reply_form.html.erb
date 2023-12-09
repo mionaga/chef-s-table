@@ -1,8 +1,7 @@
 <%= form_with model: [recipe, post_comment_reply], local: false do |f| %>
-  <%= f.label "コメントに返信する" %>
+  <!--<!%= f.label "コメントに返信する" %>-->
   <%= f.text_area :comment, placeholder: "コメントに返信", class: "comment-text-area", id: "textarea" %>
- 
+
   <%= f.hidden_field :parent_id, value: post_comment.id %>
   <%= f.submit "返信する", class: 'btn btn-warning text-white' %>
 <% end %>
-

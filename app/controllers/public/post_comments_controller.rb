@@ -2,9 +2,10 @@ class Public::PostCommentsController < ApplicationController
 
   def index
     @recipe = Recipe.find(params[:recipe_id])
-    @post_comments = @recipe.post_comments
+    @post_comments = @recipe.post_comments.where(parent_id: nil).order(created_at: :desc)
     @post_comment = PostComment.new
     @post_comment.end_user_id = current_end_user.id
+    @parent_id = params[:parent_id]
 
      #返信コメントの作成
     @post_comment_reply = @recipe.post_comments.new
@@ -14,6 +15,7 @@ class Public::PostCommentsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @post_comment = current_end_user.post_comments.new(post_comment_params)
     @post_comment.recipe_id = @recipe.id
+    @post_comments = @recipe.post_comments.order(created_at: :desc).where(parent_id: nil)
      #返信コメントの作成
     @post_comment_reply = @recipe.post_comments.new
     if @post_comment.save == false
@@ -29,8 +31,9 @@ class Public::PostCommentsController < ApplicationController
     #返信フォームに渡しているインスタンス変数の追加
     @recipe = Recipe.find(params[:recipe_id])
     @post_comment_reply = @recipe.post_comments.new
+    @post_comments = @recipe.post_comments.order(created_at: :desc).where(parent_id: nil)
 
-    @recipe = Recipe.find(params[:recipe_id])
+   # @recipe = Recipe.find(params[:recipe_id])
     PostComment.find(params[:id]).destroy
   end
 
