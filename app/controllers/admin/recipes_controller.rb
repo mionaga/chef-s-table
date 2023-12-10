@@ -14,6 +14,7 @@ class Admin::RecipesController < ApplicationController
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
+    @post_comments = @recipe.post_comments.where(parent_id: nil).order(created_at: :desc)
   end
 
   def destroy

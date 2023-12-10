@@ -1,8 +1,15 @@
 <% post_comments.each do |post_comment| %>
   <div class="comment-box">
-     <%= link_to end_user_path(post_comment.end_user) do %>
-       <%= image_tag post_comment.end_user.get_profile_image(30,30) %><br>
-       <%= post_comment.end_user.nickname %>
+     <% if current_admin %>
+       <%= link_to admin_end_user_path(post_comment.end_user) do %>
+         <%= image_tag post_comment.end_user.get_profile_image(30,30) %><br>
+         <%= post_comment.end_user.nickname %>
+       <% end %>
+     <% else %>
+       <%= link_to end_user_path(post_comment.end_user) do %>
+         <%= image_tag post_comment.end_user.get_profile_image(30,30) %><br>
+         <%= post_comment.end_user.nickname %>
+       <% end %>
      <% end %>
      (
      <%= post_comment.created_at.strftime('%Y/%m/%d') %>
@@ -13,7 +20,7 @@
      <% end %>
 
   </div>
-  <% if @parent_id && @parent_id.to_i == post_comment.id %>
+  <% if (@parent_id && @parent_id.to_i == post_comment.id) || admin_signed_in? %>
     <% if post_comment.replies.count > 0  %>
       <p>返信一覧</p>
     <% end %>
@@ -37,9 +44,12 @@
    <% end %>
 
   <% else %>
-    <%= link_to "返信を見る", recipe_post_comments_path(recipe.id, parent_id: post_comment.id) %>
+    <% if post_comment.replies.count > 0  %>
+      <%= link_to "返信を見る", recipe_post_comments_path(recipe.id, parent_id: post_comment.id) %>
+    <% end %>
+
   <% end %>
-  
+
    <% if (current_end_user && current_end_user == recipe.end_user) && (current_end_user != post_comment.end_user) %>
     <div class="comment-box-reply_form">
       <%= render 'public/post_comments/reply_form', recipe: recipe, post_comment: post_comment, post_comment_reply: post_comment_reply %>
