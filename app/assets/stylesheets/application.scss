@@ -26,12 +26,15 @@
 .pagination>li>a {
   border: none;     /*枠線をなくす*/
   color: #696969;
+
+
 }
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {
   background: #93c9ff;     /*背景の色を変える*/
   border-radius: 15px;
+
 }
 
 /*ホバー時のデザイン*/

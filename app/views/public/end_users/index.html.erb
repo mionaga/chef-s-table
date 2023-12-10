@@ -1,43 +1,4 @@
-<div class="album bg-light">
-  <div class="container">
-
-    <div class="row">
-
-      <div class ="col-md-12">
-        <h2 class="heading-title">会員一覧</h2>
-
-        <div class="row">
-
-             <% @end_users.each do |end_user| %>
-                <div class="col-md-3">
-                   <div class="card custom-card mb-4 shadow-lg">
-                     <%= link_to end_user_path(end_user) do %>
-                       <%= image_tag end_user.get_profile_image(200, 200),class:"card-img-top"; %>
-                     <% end %>
-                   <div class="card-body">
-
-                     <p class="card-title">
-                       <%= link_to end_user_path(end_user) do %>
-                         <%= end_user.nickname %>
-                       <% end %>
-                     </p>
-                     <% if end_user.specialty.present? %>
-                       <p class="card-specialty"><%= end_user.specialty %></p>
-                     <% else %>
-                       <%= "専門料理未記入" %>
-                     <% end %>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-
-        </div>
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <%= paginate @end_users %>
-    </div>
-    </div>
-
-  </div>
+<%= render 'index', end_users: @end_users %>
+<div class="row justify-content-center">
+  <%= paginate @end_users %>
 </div>

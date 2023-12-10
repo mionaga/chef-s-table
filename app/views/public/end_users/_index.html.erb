@@ -16,12 +16,12 @@
                      <% end %>
                    <div class="card-body">
 
-                     <p class="card-title">
+                     <p class="card-title">ニックネーム
                        <%= link_to end_user_path(end_user) do %>
                          <%= end_user.nickname %>
                        <% end %>
                      </p>
-                     <% if end_user.specialty.present? %>
+                     <% if end_user.specialty.present? %>専門料理：
                        <p class="card-specialty"><%= end_user.specialty %></p>
                      <% else %>
                        <%= "専門料理未記入" %>
@@ -34,8 +34,5 @@
         </div>
       </div>
     </div>
-    <!--<div class="row justify-content-center"> <!%= paginate @end_users %>-->
-    </div>
-
   </div>
 </div>

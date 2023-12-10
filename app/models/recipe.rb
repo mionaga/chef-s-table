@@ -13,7 +13,7 @@ class Recipe < ApplicationRecord
   # allow_destroy: trueは関連するこれコードを簡単に削除できるようにする
   accepts_nested_attributes_for :recipe_ingredients, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :steps, reject_if: :all_blank, allow_destroy: true
-  validates_associated :recipe_ingredients
+  # validates_associated :recipe_ingredients
   validates_associated :steps
   validates :title, presence: true
   validates :description, presence: true

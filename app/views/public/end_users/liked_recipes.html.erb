@@ -30,13 +30,9 @@
                       <% end %>
                       <%= image_tag recipe.end_user.get_profile_image(50, 50) %>
                   </p>
-                  <p>レシピ名：<br>
-                    <%= link_to recipe_path(recipe) do %>
-                      <%= recipe.title %>
-                    <% end %>
-                  </p>
                   <p>所要時間：<br>
-                  <%= recipe.cooking_time.time_in_minuites %></p>
+                     <%= recipe.cooking_time.time_in_minuites %>
+                  </p>
 
                 </div>
               </div>

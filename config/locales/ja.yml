@@ -8,7 +8,7 @@ ja:
         cooking_time: "所要時間"
         steps: "調理手順"
         recipe_ingredients: "材料・分量"
-      recipe_ingredient:
+      recipe_ingredients:
         name: "材料"
         quantity: "分量"
       ingredient:

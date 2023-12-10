@@ -1,7 +1,8 @@
 class Admin::RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag).all
+    @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag)
+                     .order(created_at: :desc)
     if params[:tag_id].present?
       @recipes = @recipes.where(tag_id: params[:tag_id])
     elsif params[:cooking_time_id].present?
