@@ -1,4 +1,4 @@
-<% recipe.post_comments.each do |post_comment| %>
+<% post_comments.each do |post_comment| %>
   <div class="comment-box">
      <%= link_to end_user_path(post_comment.end_user) do %>
        <%= image_tag post_comment.end_user.get_profile_image(30,30) %><br>
@@ -11,5 +11,39 @@
      <% if post_comment.end_user == current_end_user || admin_signed_in? %>
        <%= button_to "削除", recipe_post_comment_path(post_comment.recipe, post_comment), method: :delete, remote:true, data: {"turbolinks" => false}, data: { confirm: '本当に削除しますか?' } %>
      <% end %>
+
   </div>
+  <% if @parent_id && @parent_id.to_i == post_comment.id %>
+    <% if post_comment.replies.count > 0  %>
+      <p>返信一覧</p>
+    <% end %>
+    <% post_comment.replies.each do |reply| %>
+    <div class="comment-box-reply">
+
+
+      <%= link_to end_user_path(reply.end_user) do %>
+       <%= image_tag reply.end_user.get_profile_image(30,30) %><br>
+       <%= reply.end_user.nickname %>
+     <% end %>
+     (
+     <%= reply.created_at.strftime('%Y/%m/%d') %>
+     )
+     <%= reply.comment %>
+     <% if reply.end_user == current_end_user || admin_signed_in? %>
+       <%= button_to "削除", recipe_post_comment_path(reply.recipe, reply), method: :delete, remote:true, data: {"turbolinks" => false}, data: { confirm: '本当に削除しますか?' } %>
+     <% end %>
+
+     </div>
+   <% end %>
+
+  <% else %>
+    <%= link_to "返信を見る", recipe_post_comments_path(recipe.id, parent_id: post_comment.id) %>
+  <% end %>
+  
+   <% if (current_end_user && current_end_user == recipe.end_user) && (current_end_user != post_comment.end_user) %>
+    <div class="comment-box-reply_form">
+      <%= render 'public/post_comments/reply_form', recipe: recipe, post_comment: post_comment, post_comment_reply: post_comment_reply %>
+    </div>
+  <% end %>
+
 <% end %>

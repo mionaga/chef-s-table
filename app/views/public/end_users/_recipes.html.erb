@@ -40,7 +40,7 @@
                   <% if admin.present? %>
                     <%= link_to "#{recipe.post_comments.count} コメント", admin_recipe_path(recipe.id) %>
                   <% else %>
-                    <%= link_to "#{recipe.post_comments.count} コメント", recipe_path(recipe.id) %>
+                    <%= link_to "#{recipe.post_comments.count} コメント", recipe_post_comments_path(recipe.id) %>
                   <% end %>
                 </p>
               </div>

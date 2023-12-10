@@ -14,7 +14,7 @@
            <h2 class="heading-title">コメント一覧</h2>
              <p>コメント件数：<span id="comment_count"><%= @recipe.post_comments.count %></span>件</p>
              <div id="post_comments">
-               <%= render 'public/post_comments/show', {recipe: @recipe} %>
+               <%= render 'public/post_comments/show', {recipe: @recipe, post_comment_reply: @post_comment_reply, post_comments: @post_comments} %>
             </div>
             <div class="row" style="margin-top: 15px;">
                <%= link_to "元のページに戻る", "javascript:history.back()", class: "btn btn-secondary" %>

@@ -34,7 +34,8 @@ class Public::RecipesController < ApplicationController
   def show
     @recipe = Recipe.includes(:recipe_ingredients, :steps, :end_user, :cooking_time, :photo_attachment).find(params[:id])
     @post_comment = PostComment.new
-
+    #返信コメント作成
+    # @post_comment_reply = @recipe.post_comments.new
   end
 
   def edit
