@@ -51,10 +51,21 @@ class Recipe < ApplicationRecord
        visited_id: end_user_id,
        action: 'post_comment'
        )
-       if notification.visiter_id == notification.visited_id
-          notification.checked = true
-       end
        
+       # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
+     if parent.present?
+       notification.action = 'reply_comment'
+       noification.visited_id = parent.user_id
+     end
+
+     # 自分自身に対するコメントの場合はcheckedをtrueに設定する
+     notification.checked = true if notification.visitor_id == notification.visited_id
+       
+    #   if notification.visiter_id == notification.visited_id
+        #   notification.checked = true
+    #   end
+       
+       # 通知を保存する
        notification.save if notification.valid?
      end   
    end
