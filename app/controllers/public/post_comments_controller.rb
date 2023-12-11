@@ -20,11 +20,12 @@ class Public::PostCommentsController < ApplicationController
     @post_comment_reply = @recipe.post_comments.new
     if @post_comment.save == false
       flash.now[:alert] = "コメントの投稿に失敗しました"
-      # render :index
       return
     end
     flash.now[:notice] = "コメントの投稿に成功しました"
-    # render :index
+    
+    #通知実装のため記述
+    @recipe.create_notification_by(current_end_user)
   end
 
   def destroy

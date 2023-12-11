@@ -1,0 +1,13 @@
+<ul>
+  <li>
+    <%= link_to end_user_path(notification.visiter) do %>
+      <strong><%= notification.visiter.nickname %></strong>
+    <% end %>さんが
+    <strong><%= link_to recipe_post_comments_path(notification.recipe) do %>
+              <%= notification.recipe.title.truncate(20) %>
+            <% end %>
+    </strong>
+    にコメントしました。
+    <%= " (#{time_ago_in_words(notification.created_at)}前)" %>
+  </li>
+</ul>

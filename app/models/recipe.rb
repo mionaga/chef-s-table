@@ -7,6 +7,7 @@ class Recipe < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :recipe_ingredients, dependent: :destroy
   has_many :steps, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   belongs_to :tag
   # accepts_nested_attributes_forで子カラムを一緒に保存できるようになる
   # reject_if: :all_blank　不要なカラレコードの生成を防ぐ
@@ -19,12 +20,6 @@ class Recipe < ApplicationRecord
   validates :description, presence: true
   validates :recipe_ingredients, presence: true
   validates :steps, presence: true
-
-
-  #
-  # validates_associated :cooking_time
-  # validates :tag, presence: true
-  # validates :cooking_time, presence: true
 
 
 
@@ -47,6 +42,23 @@ class Recipe < ApplicationRecord
        .page(page)
        .per(per_page)
    end
+
+   def create_notification_by(current_end_user)
+     #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
+     if end_user.id != current_end_user.id
+       notification = current_end_user.active_notifications.new(
+       recipe_id: id,
+       visited_id: end_user_id,
+       action: 'post_comment'
+       )
+       if notification.visiter_id == notification.visited_id
+          notification.checked = true
+       end
+       
+       notification.save if notification.valid?
+     end   
+   end
+
 
    def self.looks(search, word)
     if search == 'parfect'

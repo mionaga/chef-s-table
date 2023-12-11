@@ -42,6 +42,15 @@
   border-radius: 15px;
 }
 
+header .notice_box{
+  box-sizing: border-box;
+  background-color: tomato;
+  border-radius: 6px;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+}
+
 body {
       display: flex;
       flex-direction: column;
@@ -169,6 +178,11 @@ h4.heading-title{
   border-radius: 5px;
 }
 
+.notificaton_box{
+  padding: 10px;
+  margin-top: 40px;
+  text-align: center;
+}
 
 .logo-img{
   width: 80px;
