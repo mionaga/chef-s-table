@@ -25,9 +25,13 @@
 - 決まった端材ばかり抱えて処理に悩む飲食店が活用方法を検索するとき
 - 賄い作りに悩む若いコックさんがレシピや所要時間を知りたいとき
 - プロの料理人から一般のユーザーまでが食材とレシピを通じてコミュニケーションできる場所として
+
 ​
 ## 設計書
+### ER図
+![chef's tableER図 drawio](https://github.com/mionaga/chef-s-table/assets/143914849/9d185811-7a78-4d89-9299-abb8b60e3ac7)
 - テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
+
 
 ​
 ## 開発環境
