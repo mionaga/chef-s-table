@@ -29,8 +29,10 @@
 ​
 ## 設計書
 ### ER図
-![chef's tableER図 drawio](https://github.com/mionaga/chef-s-table/assets/143914849/9d185811-7a78-4d89-9299-abb8b60e3ac7)
-- テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
+<img width="1203" alt="Shef'sTableER " src="https://github.com/mionaga/chef-s-table/assets/143914849/4a5344d4-f169-485e-a548-949feca8fb7e">
+
+
+### テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
 
 
 ​
