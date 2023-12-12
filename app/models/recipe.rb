@@ -43,31 +43,64 @@ class Recipe < ApplicationRecord
        .per(per_page)
    end
 
-   def create_notification_by(current_end_user)
-     #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
-     if end_user.id != current_end_user.id
-       post_comments.each do |comment|
-         notification = current_end_user.active_notifications.new(
-         recipe_id: id,
-         visited_id: end_user_id,
-         action: 'post_comment'
-         )
-       
-         # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
-         if comment.parent_id.present?
-           notification.action = 'reply_comment'
-           notification.visited_id = comment.parent.end_user_id
-         end
+    def create_notification_by(current_end_user, post_comment)
+      #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
+      # if end_user.id != current_end_user.id
 
-          # 自分自身に対するコメントの場合はcheckedをtrueに設定する
-          notification.checked = true if notification.visiter_id == notification.visited_id
-       
-          # 通知を保存する
-          notification.save if notification.valid?
-        end   
-      end 
-       
+        if post_comment.parent_id.nil?
+          notification = current_end_user.active_notifications.new(
+            recipe_id: id,
+            visited_id: end_user_id,
+            action: 'post_comment'
+          )
+        else
+          parent_post_comment = PostComment.find(post_comment.parent_id) # 親コメント取得
+          notification = current_end_user.active_notifications.new(
+            recipe_id: id,
+            visited_id: parent_post_comment.end_user_id, # 通知先として、親コメントの作成者に通知
+            action: 'post_comment_reply'
+          )
+        end
+
+      # # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
+      # if parent.present?
+      #   notification.action = 'reply_comment'
+      #   noification.visited_id = parent.user_id
+      # end
+
+        # 自分自身に対するコメントの場合はcheckedをtrueに設定する
+        notification.checked = true if notification.visiter_id == notification.visited_id
+
+        # 通知を保存する
+        notification.save if notification.valid?
+      # end
    end
+
+  # def create_notification_by(current_end_user,action)
+  #   #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
+  #   if end_user.id != current_end_user.id
+  #     post_comments.each do |comment|
+  #       notification = current_end_user.active_notifications.new(
+  #       recipe_id: id,
+  #       visited_id: end_user_id,
+  #       action: 'post_comment'
+  #       )
+
+  #       # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
+  #       if comment.parent_id.present?
+  #         notification.action = 'reply_comment'
+  #         notification.visited_id = comment.parent.end_user_id
+  #       end
+
+  #         # 自分自身に対するコメントの場合はcheckedをtrueに設定する
+  #         notification.checked = true if notification.visiter_id == notification.visited_id
+
+  #         # 通知を保存する
+  #         notification.save if notification.valid?
+  #       end
+  #     end
+
+  # end
 
 
    def self.looks(search, word)

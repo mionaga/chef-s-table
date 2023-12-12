@@ -7,7 +7,6 @@
           <%= link_to "履歴を全て削除", notification_path(@notifications), method: :delete, class:"btn btn-danger remove-description mb-3" %>
         <% end %>
       </p>
-
       <% if @notifications.exists? && %>
         <%= render @notifications %>
       <% else %>

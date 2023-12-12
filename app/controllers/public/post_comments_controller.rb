@@ -23,9 +23,9 @@ class Public::PostCommentsController < ApplicationController
       return
     end
     flash.now[:notice] = "コメントの投稿に成功しました"
-    
+
     #通知実装のため記述
-    @recipe.create_notification_by(current_end_user)
+    @recipe.create_notification_by(current_end_user, @post_comment)
   end
 
   def destroy
