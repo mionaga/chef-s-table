@@ -46,28 +46,27 @@ class Recipe < ApplicationRecord
    def create_notification_by(current_end_user)
      #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
      if end_user.id != current_end_user.id
-       notification = current_end_user.active_notifications.new(
-       recipe_id: id,
-       visited_id: end_user_id,
-       action: 'post_comment'
-       )
+       post_comments.each do |comment|
+         notification = current_end_user.active_notifications.new(
+         recipe_id: id,
+         visited_id: end_user_id,
+         action: 'post_comment'
+         )
        
-       # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
-     if parent.present?
-       notification.action = 'reply_comment'
-       noification.visited_id = parent.user_id
-     end
+         # 返信コメントの場合はactionを変更し、visited_idを返信コメントのユーザーIDに設定する
+         if comment.parent_id.present?
+           notification.action = 'reply_comment'
+           notification.visited_id = comment.parent.end_user_id
+         end
 
-     # 自分自身に対するコメントの場合はcheckedをtrueに設定する
-     notification.checked = true if notification.visitor_id == notification.visited_id
+          # 自分自身に対するコメントの場合はcheckedをtrueに設定する
+          notification.checked = true if notification.visiter_id == notification.visited_id
        
-    #   if notification.visiter_id == notification.visited_id
-        #   notification.checked = true
-    #   end
+          # 通知を保存する
+          notification.save if notification.valid?
+        end   
+      end 
        
-       # 通知を保存する
-       notification.save if notification.valid?
-     end   
    end
 
 

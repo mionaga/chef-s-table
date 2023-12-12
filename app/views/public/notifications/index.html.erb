@@ -4,7 +4,7 @@
       <h2 class="text-center"><i class="fas fa-bell"></i>通知</h2>
       <p class="text-right">
         <% if @notifications.exists? %>
-          <%= link_to "全削除", notification_path(@notifications), method: :delete, class:"btn btn-danger remove-description mb-3" %>
+          <%= link_to "履歴を全て削除", notification_path(@notifications), method: :delete, class:"btn btn-danger remove-description mb-3" %>
         <% end %>
       </p>
 

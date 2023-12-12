@@ -4,6 +4,12 @@ class Public::NotificationsController < ApplicationController
     @notifications.where(checked: false).each do |notification|
       notification.update(checked: true)
     end
+    @notifications.each do |notification|
+      if notification.action == 'reply_comment'
+        # recipeに関連づけられたコメントで、parent_idを持っているコメントを検索
+        @reply_comment = PostComment.find_by(recipe_id: notification.recipe_id, parent_id: notification.reply_comment.id)
+      end
+    end  
   end
 
   def destroy
