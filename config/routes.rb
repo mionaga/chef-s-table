@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-
- 
  # URL /customers/sign_in ...
  devise_for :end_users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -59,6 +57,7 @@ Rails.application.routes.draw do
       get :liked_recipes
      end
     end
+    
     resources :ingredients, only: [:index, :show]
     resources :recipes do
      resource :favorite, only: [:create, :destroy]
@@ -68,6 +67,8 @@ Rails.application.routes.draw do
     resources :categories, only: [:index] do
      resources :ingrdients, only: :index, module: :categories
     end
+    
+    resources :notifications, only: [:index, :destroy]
 
   end
 

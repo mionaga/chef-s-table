@@ -14,7 +14,7 @@ class Public::RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
-    @recipe.recipe_ingredients.build #画面で使うための空の食材オブ時ジェクト
+    @recipe.recipe_ingredients.build #画面で使うための空の食材オブジェクト
     @recipe.steps.build #画面で使うための空のstepsオブジェクト
   end
 

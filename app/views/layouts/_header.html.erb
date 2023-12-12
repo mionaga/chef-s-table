@@ -2,7 +2,7 @@
 
           <div class = "container-fluid ">
               <div class="row mx-auto">
-                    <div class="col-3 my-4">
+                    <div class="col-2 my-4">
                       <%= link_to root_path do %>
                         <h1 class="logo-img"></h1>
                       <% end %>
@@ -19,7 +19,7 @@
                     </div>
 
                     <!--admin login時header-->
-                    <div class="col-6">
+                    <div class="col-7">
                       <ul class="row justify-content-end my-2 list-unstyled">
                         <% if admin_signed_in? %>
                           <li class="nav-item mx-2 my-4">
@@ -56,6 +56,19 @@
 
                           <!--end_userlogin時header-->
                          <% elsif end_user_signed_in? %>
+                          <li class="nav-item mx-2 my-4">
+                            <% if unchecked_notifications.any? %>
+                              <div class="notice_box">
+                                <%= link_to notifications_path, style: "color: white" do %>
+                                  <i class="fa-solid fa-bell"></i>Notice
+                                <% end %>
+                              </div>
+                            <% else %>
+                              <%= link_to notifications_path, style: "color: white" do %>
+                                <i class="fa-solid fa-check"></i>Notice
+                              <% end %>
+                            <% end %>
+                          </li>
                           <li class="nav-item mx-2 my-4">
                             <%= link_to end_user_path(current_end_user), style: "color: white;" do %>
                               <i class="fa-solid fa-mug-hot"></i>マイページ
@@ -120,16 +133,16 @@
                           </li>
                         <% end %>
                       </ul>
-                      
+
                       <div class="row justify-content-end my-2 list-unstyled">
-                        
+
                         <div style="margin-right: 30px; margin-bottom: 15px;">
                           <%= render 'searches/form' %>
                         </div>
-                        
+
                       </div>
-                      
-                      
+
+
               </div>
           </div>
       </header>
