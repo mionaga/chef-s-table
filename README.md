@@ -31,10 +31,10 @@
 ### ER図
 <img width="1203" alt="Shef'sTableER " src="https://github.com/mionaga/chef-s-table/assets/143914849/4a5344d4-f169-485e-a548-949feca8fb7e">
 
+### テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
+
 ### AWS構成図
 <img width="885" alt="AWS-diagram 2023-12-13 11 02 33" src="https://github.com/mionaga/chef-s-table/assets/143914849/179969fd-3bc5-4f8b-bfce-f7dca2cde36c">
-
-### テーブル定義書URL：https://docs.google.com/spreadsheets/d/1L_06JCA0JrjDKFemQOLMq-Oq5NUd4aa8/edit?usp=sharing&ouid=117497397567172446549&rtpof=true&sd=true
 
 ## 実装機能一覧
 - ゲストログイン機能
