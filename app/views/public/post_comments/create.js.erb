@@ -1,4 +1,13 @@
 $('#post_comments').html("<%= j(render "public/post_comments/show", recipe: @recipe, post_comment_reply: @post_comment_reply, post_comments: @post_comments) %>");
 $('#comment_count').html("<%= @recipe.post_comments.count %>")
 $("textarea").val('');
-$("#alert").html("<div class='alert alert-success' role='alert'><p class='notice text-center' style='color:green;'><%= flash.now[:notice] %></p></div>");
+
+$('#alert').css('display', 'block');
+$("#alert").html("<div class='alert alert-success' role='alert'><p class='notice text-center m-0' style='color:green;'><%= flash.now[:notice] %></p></div>");
+
+setTimeout(function()
+    {
+        $('#alert').fadeOut(1500);
+    },
+    1000
+);
