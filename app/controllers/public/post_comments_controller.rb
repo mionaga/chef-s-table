@@ -19,7 +19,7 @@ class Public::PostCommentsController < ApplicationController
      #返信コメントの作成
     @post_comment_reply = @recipe.post_comments.new
     if @post_comment.save == false
-      flash.now[:alert] = "コメントの投稿に失敗しました"
+      flash.now[:notice] = "コメントの投稿に失敗しました"
       return
     end
     flash.now[:notice] = "コメントの投稿に成功しました"

@@ -1,8 +1,12 @@
-<% if flash.now[:notice] %>
-  <div class="alert alert-success" role="alert">
-  <p class="notice text-center" style="color:green;"><%= flash.now[:notice] %></p></div>
-<% end %>
-
+<div id="alert">
+  <% if flash.now[:notice] %>
+     <div class="alert alert-success" role="alert">
+       <p class="notice text-center" style="color:green;">
+         <%= flash.now[:notice] %>
+       </p>
+     </div>
+  <% end %>
+</div>
 <div class="container-m">
   <div class="row">
     <div class="col-7 offset-1">
