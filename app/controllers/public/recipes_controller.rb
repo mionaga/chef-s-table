@@ -1,5 +1,5 @@
 class Public::RecipesController < ApplicationController
-  before_action :authorize_end_user, only: [:edit, :update]
+  before_action :authorize_end_user, only: [:edit, :update, :destroy]
 
   def index
     @recipes = Recipe.includes(:end_user, :cooking_time, :recipe_ingredients, :steps, :tag)
@@ -39,11 +39,11 @@ class Public::RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
+    # @recipe = Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
+    # @recipe = Recipe.find(params[:id])
     if @recipe.update(recipe_params)
       redirect_to @recipe, notice: 'レシピの更新に成功しました'
     else
@@ -52,8 +52,8 @@ class Public::RecipesController < ApplicationController
   end
 
   def destroy
-    recipe = Recipe.find(params[:id])
-    recipe.destroy
+    # recipe = Recipe.find(params[:id])
+    @recipe.destroy
     redirect_to recipes_path
   end
 

@@ -1,4 +1,5 @@
 class Public::PostCommentsController < ApplicationController
+  before_action :authorize_end_user, only: [:destroy]
 
   def index
     @recipe = Recipe.find(params[:recipe_id])
@@ -34,7 +35,7 @@ class Public::PostCommentsController < ApplicationController
     @post_comment_reply = @recipe.post_comments.new
     @post_comments = @recipe.post_comments.order(created_at: :desc).where(parent_id: nil)
 
-   # @recipe = Recipe.find(params[:recipe_id])
+  
     PostComment.find(params[:id]).destroy
   end
 
@@ -43,4 +44,12 @@ class Public::PostCommentsController < ApplicationController
   def post_comment_params
     params.require(:post_comment).permit(:comment, :parent_id)
   end
+  
+  def authorize_end_user
+    @post_comment = PostComment.find(params[:id])
+  
+    unless @post_comment.end_user == current_end_user
+      redirect_to recipe_post_comments_path(recipe_id: @post_comment.recipe.id)
+    end
+  end  
 end

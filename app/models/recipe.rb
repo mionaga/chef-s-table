@@ -43,7 +43,7 @@ class Recipe < ApplicationRecord
        .per(per_page)
    end
 
-    def create_notification_by(current_end_user, post_comment)
+   def create_notification_by(current_end_user, post_comment)
       #レシピの所有者とコメントの投稿者が別ユーザーかどうか判定
       # if end_user.id != current_end_user.id
 
