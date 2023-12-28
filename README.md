@@ -1,6 +1,13 @@
 # Chef's Table
+## About
+<img width="1461" alt="about 2023-12-11 10 04 05" src="https://github.com/mionaga/chef-s-table/assets/143914849/a437dc14-2769-4fb5-aefc-918e1848a9e8">
 ​
+
+
 ## サイト概要
+### サービスのURL
+ゲストログイン機能を実装しましたので、登録せずにお試しいただくこともできます。
+http://57.180.208.163/
 ### サイトテーマ
 料理人をメインターゲットとした賄いレシピのコミュニティサイト
 ### テスト用アカウント
@@ -59,5 +66,3 @@
 ## 使用素材
 - フリー画像としてPixabayを使用
 
-## About
-<img width="1461" alt="about 2023-12-11 10 04 05" src="https://github.com/mionaga/chef-s-table/assets/143914849/a437dc14-2769-4fb5-aefc-918e1848a9e8">
